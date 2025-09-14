@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meera Madhavan - UI/UX Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preload" href="Meera_Portfolio.jpg" as="image">
+    <style>
+        /* Custom Variables for Autumn Landscape Color Palette */
+        :root {
+            --primary-coral: #E07A5F;
+            --secondary-coral: #F4A583;
+            --accent-blue: #5B9BD5;
+            --secondary-blue: #8BB8DD;
+            --warm-cream: #F5F1EB;
+            --soft-beige: #E8D7C5;
+            --earthy-brown: #8B6F47;
+            --deep-brown: #6B4423;
+            --text-dark: #1B0F0C;
+            --text-medium: #1B0F0C;
+            --chocolate-brown: #1B0F0C;
+            --chocolate-medium: #1B0F0C;
+            --chocolate-light: #1B0F0C;
+        }
+
+        /* Global Styles */
+        * {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: url('Meera_Portfolio.jpg') center/cover no-repeat fixed;
+            color: var(--text-dark);
+            line-height: 1.65;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            position: relative;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.1);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+
+        .section-padding {
+            padding: 5rem 1rem;
+        }
+
+        /* Transparent Card Overlay Styles */
+        .section-card {
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 24px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            margin: 2rem auto;
+            max-width: 1200px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-coral) 0%, var(--accent-blue) 100%);
+            opacity: 0.7;
+        }
+
+        /* Hero Section as Transparent Card */
+        .hero-gradient {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 24px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+            margin: 2rem auto;
+            max-width: 1200px;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            color: var(--text-dark);
+        }
+
+        .hero-gradient::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-coral) 0%, var(--accent-blue) 100%);
+            opacity: 0.8;
+        }
+
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            color: var(--text-dark);
+        }
+
+        /* Fixed: Added proper text gradient class for hero */
+        .text-gradient-light {
+            background: linear-gradient(135deg, var(--secondary-coral) 0%, var(--warm-cream) 50%, #FFFFFF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+        }
+
+        .text-gradient-hero {
+            background: linear-gradient(135deg, var(--primary-coral) 0%, var(--earthy-brown) 30%, #4682B4 70%, var(--accent-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--primary-coral) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Remove old section backgrounds - now using transparent cards */
+
+        /* Typography Enhancements */
+        .section-title {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 700;
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+            color: var(--text-dark);
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+
+        /* Enhanced Button Styles */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--primary-coral) 100%);
+            color: white;
+            padding: 1.25rem 2.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 6px 20px rgba(91, 155, 213, 0.3);
+            border: 2px solid transparent;
+            letter-spacing: 0.025em;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(91, 155, 213, 0.4);
+            text-decoration: none;
+            color: white;
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Enhanced Portfolio Cards */
+        .portfolio-card {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(8px);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid var(--soft-beige);
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portfolio-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-coral) 0%, var(--accent-blue) 100%);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            border-color: var(--accent-blue);
+        }
+
+        .portfolio-card:hover::before {
+            transform: translateX(0);
+        }
+
+        .portfolio-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, var(--primary-coral) 0%, var(--accent-blue) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 12px rgba(224, 122, 95, 0.3);
+        }
+
+        /* Enhanced Skills Section */
+        .skill-category {
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            border-left: 5px solid var(--primary-coral);
+            transition: all 0.3s ease;
+            position: relative;
+            backdrop-filter: blur(8px);
+        }
+
+        .skill-category:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .skill-category:nth-child(2) {
+            border-left-color: var(--accent-blue);
+        }
+
+        .skill-category:nth-child(3) {
+            border-left-color: var(--earthy-brown);
+        }
+
+        /* Enhanced Process Steps */
+        .process-step {
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+            border-left: 5px solid var(--accent-blue);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(8px);
+        }
+
+        .process-step::before {
+            content: counter(step-counter);
+            counter-increment: step-counter;
+            position: absolute;
+            right: 1.5rem;
+            top: 1.5rem;
+            background: linear-gradient(135deg, var(--primary-coral) 0%, var(--accent-blue) 100%);
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1rem;
+            box-shadow: 0 2px 8px rgba(224, 122, 95, 0.3);
+        }
+
+        .process-list {
+            counter-reset: step-counter;
+        }
+
+        .process-step:hover {
+            transform: translateX(8px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        /* Enhanced Glass Cards */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Enhanced Testimonial Styling */
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 24px;
+            padding: 3rem;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            border: 2px solid var(--soft-beige);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(8px);
+        }
+
+        .testimonial-card:hover {
+            border-color: var(--accent-blue);
+            transform: translateY(-4px);
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 1rem;
+            left: 2rem;
+            font-size: 5rem;
+            color: var(--primary-coral);
+            font-family: serif;
+            opacity: 0.2;
+        }
+
+        /* Enhanced Contact Section */
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            padding: 1.25rem 2rem;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(8px);
+            border-radius: 16px;
+            color: var(--text-dark);
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 2px solid var(--soft-beige);
+            font-weight: 500;
+        }
+
+        .contact-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border-color: var(--accent-blue);
+            color: var(--secondary-navy);
+            text-decoration: none;
+        }
+
+        /* Responsive Design Enhancements */
+        @media (max-width: 768px) {
+            .section-padding {
+                padding: 3rem 1rem;
+            }
+            
+            .section-title {
+                font-size: 2.25rem;
+            }
+            
+            .hero-gradient h1 {
+                font-size: 2.5rem !important;
+            }
+
+            .hero-gradient {
+                min-height: 70vh;
+            }
+
+            .btn-primary {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-gradient h1 {
+                font-size: 2rem !important;
+            }
+            
+            .section-title {
+                font-size: 1.875rem;
+            }
+        }
+
+        /* Chocolate Brown Text Classes */
+        .text-chocolate {
+            color: var(--chocolate-brown) !important;
+        }
+
+        .text-chocolate-medium {
+            color: var(--chocolate-medium) !important;
+        }
+
+        .text-chocolate-light {
+            color: var(--chocolate-light) !important;
+        }
+
+        /* Scroll Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Enhanced Navigation (if needed for future) */
+        .nav-sticky {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(249, 250, 251, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--light-grey);
+        }
+    </style>
+</head>
+<body>
+    <!-- Sketches to Solutions as Hero -->
+    <header id="hero" class="hero-gradient section-padding">
+        <div class="hero-content max-w-6xl mx-auto text-center">
+            <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight" style="font-family: 'Playfair Display', Georgia, serif; letter-spacing: -0.02em; color: var(--chocolate-brown);">
+                Sketches to Solutions
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 opacity-95 max-w-4xl mx-auto" style="font-family: 'Caveat', cursive; font-weight: 600; letter-spacing: 0.01em; line-height: 1.6; font-size: 1.5rem; color: var(--chocolate-brown);">
+                I thrive on turning complexity into clarity through design. By blending creativity with technical know-how, I craft intuitive interfaces and seamless experiences that not only solve problems but make everyday workflows feel effortless. From the first sketch to a polished, production-ready product, my focus is always on creating solutions people love to use. Let's connect and bring thoughtful design to your next big idea.
+            </p>
+            <div class="flex flex-col items-center gap-6 mt-8">
+                <a href="#portfolio" class="btn-primary mb-4">
+                    Highlights
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Me Section -->
+    <section class="section-card section-padding">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="section-title text-center">About Me</h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="glass-card p-8">
+                    <p class="text-lg mb-6 text-chocolate-medium leading-relaxed" style="font-weight: 400; letter-spacing: -0.005em;">
+                        With over a decade of experience in application support and development, I specialize in bridging the gap between design and engineering. My background in <strong class="text-chocolate">CRM development, cloud platforms, and automation</strong> allows me to bring a unique perspective to UI/UX design—balancing creativity with practicality.
+                    </p>
+                    <p class="text-lg text-chocolate-medium leading-relaxed" style="font-weight: 400; letter-spacing: -0.005em;">
+                        I believe in designing experiences that solve problems, simplify workflows, and enhance user satisfaction. From crafting wireframes to implementing production-ready applications, I ensure every solution is user-centered and technically sound.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="section-card section-padding">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="section-title text-center">Portfolio Highlights</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="portfolio-card fade-in">
+                    <div class="portfolio-icon">
+                        📊
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-chocolate text-center" style="font-family: 'Playfair Display', Georgia, serif; letter-spacing: -0.01em;">Dashboard Redesign</h3>
+                    <ul class="text-chocolate-medium leading-relaxed text-left" style="font-weight: 400; letter-spacing: -0.005em; line-height: 1.7; list-style: none; padding-left: 0;">
+                        <li style="margin-bottom: 0.5rem; position: relative; padding-left: 1.5rem;">
+                            <span style="position: absolute; left: 0; color: var(--chocolate-brown);">•</span>
+                            Redesigned and developed a responsive web dashboard to monitor application performance and escalations.
+                        </li>
+                        <li style="margin-bottom: 0.5rem; position: relative; padding-left: 1.5rem;">
+                            <span style="position: absolute; left: 0; color: var(--chocolate-brown);">•</span>
+                            Improved usability with intuitive data visualizations and color-coded alerts.
+                        </li>
+                        <li style="margin-bottom: 0.5rem; position: relative; padding-left: 1.5rem;">
+                            <span style="position: absolute; left: 0; color: var(--chocolate-brown);">•</span>
+                            Achieved an <strong class="text-chocolate">80% increase in issue tracking visibility</strong>.
+                        </li>
+                    </ul>
+                </div>
+                <div class="portfolio-card fade-in">
+                    <div class="portfolio-icon">
+                        🔄
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-chocolate text-center" style="font-family: 'Playfair Display', Georgia, serif; letter-spacing: -0.01em;">RPA Workflow Migration</h3>
+                    <ul class="text-chocolate-medium leading-relaxed text-left" style="font-weight: 400; letter-spacing: -0.005em; line-height: 1.7; list-style: none; padding-left: 0;">
+                        <li style="margin-bottom: 0.5rem; position: relative; padding-left: 1.5rem;">
+                            <span style="position: absolute; left: 0; color: var(--chocolate-brown);">•</span>
+                            Designed and developed dashboards that provided stakeholders with clear visibility into process runs and the status of daily operations.
+                        </li>
+                        <li style="margin-bottom: 0.5rem; position: relative; padding-left: 1.5rem;">
+                            <span style="position: absolute; left: 0; color: var(--chocolate-brown);">•</span>
+                            Designed and developed a user interface for process runs that enabled RPA controllers to trigger, monitor, and troubleshoot daily operations—reducing issue resolution time and mitigating potential risks.
+                        </li>
+                    </ul>
+                </div>
+                <div class="portfolio-card fade-in">
+                    <div class="portfolio-icon">
+                        🏥
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-chocolate text-center" style="font-family: 'Playfair Display', Georgia, serif; letter-spacing: -0.01em;">Healthcare Data Tools</h3>
+                    <ul class="text-chocolate-medium leading-relaxed text-left" style="font-weight: 400; letter-spacing: -0.005em; line-height: 1.7; list-style: none; padding-left: 0;">
+                        <li style="margin-bottom: 0.5rem; position: relative; padding-left: 1.5rem;">
+                            <span style="position: absolute; left: 0; color: var(--chocolate-brown);">•</span>
+                            Enhanced UI for secure data reporting applications.
+                        </li>
+                        <li style="margin-bottom: 0.5rem; position: relative; padding-left: 1.5rem;">
+                            <span style="position: absolute; left: 0; color: var(--chocolate-brown);">•</span>
+                            Designed cleaner interfaces and improved data accessibility.
+                        </li>
+                        <li style="margin-bottom: 0.5rem; position: relative; padding-left: 1.5rem;">
+                            <span style="position: absolute; left: 0; color: var(--chocolate-brown);">•</span>
+                            Developed dashboards supporting faster decision-making for research teams.
+                        </li>
+                        <li style="margin-bottom: 0.5rem; position: relative; padding-left: 1.5rem;">
+                            <span style="position: absolute; left: 0; color: var(--chocolate-brown);">•</span>
+                            Collected feedback from users and team members through surveys to improve system performance and user experience.
+                        </li>
+                    </ul>
+                </div>
+                <div class="portfolio-card fade-in">
+                    <div class="portfolio-icon">
+                        🛠️
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-chocolate text-center" style="font-family: 'Playfair Display', Georgia, serif; letter-spacing: -0.01em;">UX Innovation</h3>
+                    <ul class="text-chocolate-medium leading-relaxed text-left" style="font-weight: 400; letter-spacing: -0.005em; line-height: 1.7; list-style: none; padding-left: 0;">
+                        <li style="margin-bottom: 0.5rem; position: relative; padding-left: 1.5rem;">
+                            <span style="position: absolute; left: 0; color: var(--chocolate-brown);">•</span>
+                            Redesigned and optimized an internal financial web application, driving a <strong class="text-chocolate">40% boost in user experience and user satisfaction</strong>.
+                        </li>
+                        <li style="margin-bottom: 0.5rem; position: relative; padding-left: 1.5rem;">
+                            <span style="position: absolute; left: 0; color: var(--chocolate-brown);">•</span>
+                            Integrated reusable, easily updatable decision tree logic, enabling an interactive questionnaire that dynamically adapts to users' previous responses.
+                        </li>
+                        <li style="margin-bottom: 0.5rem; position: relative; padding-left: 1.5rem;">
+                            <span style="position: absolute; left: 0; color: var(--chocolate-brown);">•</span>
+                            Simplified complex workflows and guided users seamlessly to the right outcomes.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Process Section -->
+    <section id="process" class="section-card section-padding">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="section-title text-center">My Process</h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="process-list">
+                    <div class="process-step fade-in">
+                        <h3 class="text-lg font-bold text-chocolate mb-2 text-center" style="font-family: 'Playfair Display', Georgia, serif;">Discover</h3>
+                        <p class="text-chocolate-medium leading-relaxed" style="font-weight: 400; letter-spacing: -0.005em; line-height: 1.7;">Understand user needs and business goals through research, interviews, and data analysis</p>
+                    </div>
+                    <div class="process-step fade-in">
+                        <h3 class="text-lg font-bold text-chocolate mb-2 text-center" style="font-family: 'Playfair Display', Georgia, serif;">Design</h3>
+                        <p class="text-chocolate-medium leading-relaxed" style="font-weight: 400; letter-spacing: -0.005em; line-height: 1.7;">Create wireframes, prototypes, and user flows that solve identified problems</p>
+                    </div>
+                    <div class="process-step fade-in">
+                        <h3 class="text-lg font-bold text-chocolate mb-2 text-center" style="font-family: 'Playfair Display', Georgia, serif;">Develop</h3>
+                        <p class="text-chocolate-medium leading-relaxed" style="font-weight: 400; letter-spacing: -0.005em; line-height: 1.7;">Build functional interfaces with clean, maintainable code and attention to detail</p>
+                    </div>
+                    <div class="process-step fade-in">
+                        <h3 class="text-lg font-bold text-chocolate mb-2 text-center" style="font-family: 'Playfair Display', Georgia, serif;">Deliver</h3>
+                        <p class="text-chocolate-medium leading-relaxed" style="font-weight: 400; letter-spacing: -0.005em; line-height: 1.7;">Test, refine, and deploy solutions optimized for real-world use and performance</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="section-card section-padding">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="section-title text-center">Testimonials</h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="testimonial-card fade-in">
+                    <blockquote class="text-xl italic text-chocolate-medium mb-6 text-center leading-relaxed" style="font-family: 'Playfair Display', Georgia, serif; font-weight: 400; letter-spacing: -0.01em; line-height: 1.6;">
+                        Meera not only delivered technically sound solutions but also designed user-friendly tools that our teams loved working with.
+                    </blockquote>
+                    <footer class="text-center">
+                        <div class="font-semibold text-chocolate text-lg"><a href="https://linkedin.com/in/ashwin-k-05330a33" target="_blank" style="text-decoration: none; color: inherit; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Ashwin Krishnamurthy</a></div>
+                        <div class="text-chocolate-light">Program Manager @ <a href="https://www.microsoft.com" target="_blank" style="text-decoration: none; color: inherit; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Microsoft</a></div>
+                    </footer>
+                </div>
+
+                <!-- Madhavee Inamdar's testimonial - Hidden for later use
+                <div class="testimonial-card fade-in">
+                    <blockquote class="text-xl italic text-chocolate-medium mb-6 text-center leading-relaxed" style="font-family: 'Playfair Display', Georgia, serif; font-weight: 400; letter-spacing: -0.01em; line-height: 1.6;">
+                        From the very first brainstorming session to the final launch, Meera didn't just build a website, she crafted a digital space that feels both inspiring and accessible. Her creativity, technical expertise, and attention to detail brought our vision to life in ways we hadn't imagined. We are beyond grateful for her dedication and the beautiful result she delivered. Every design choice, from the colour palette to the typography was intentional, inclusive, and aligned with our ethos. The site's seamless navigation and robust accessibility features ensure that no visitor feels left out, regardless of ability or background. If you're searching for a designer who can transform your vision into a meaningful digital experience, Meera is not just the right choice but someone who can turn vision into reality with grace and brilliance with her professionalism, artistry and relentless pursuit.
+                    </blockquote>
+                    <footer class="text-center">
+                        <div class="font-semibold text-chocolate text-lg"><a href="https://linkedin.com/in/madhavee-inamdar-0220b9a" target="_blank" style="text-decoration: none; color: inherit; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Madhavee Inamdar</a></div>
+                        <div class="text-chocolate-light">Diversity, Equity & Inclusion Strategist</div>
+                    </footer>
+                </div>
+                -->
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Former Hero Content -->
+    <section class="section-card section-padding">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="section-title text-center" style="font-family: 'Playfair Display', Georgia, serif; letter-spacing: -0.02em;">
+                Designing Experiences That Matter
+            </h2>
+            <p class="text-xl mb-8 text-chocolate max-w-4xl mx-auto leading-relaxed" style="font-family: 'Caveat', cursive; font-weight: 600; letter-spacing: 0.01em; line-height: 1.6; font-size: 1.5rem;">
+                I'm Meera Madhavan, a UI/UX focused developer ready to collaborate on your next project. Let's create digital experiences that are beautiful, functional, and reliable.
+                <br><br>Let's connect!
+                <br><br>- Meera
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-6 mt-8">
+                <a href="mailto:meeramadhavan@live.com" class="contact-link">
+                    <span class="text-2xl mr-3">📧</span>
+                    <span class="font-medium">meeramadhavan@live.com</span>
+                </a>
+                <a href="https://linkedin.com/in/madhavanmeera" target="_blank" class="contact-link">
+                    <span class="text-2xl mr-3">🔗</span>
+                    <span class="font-medium" style="font-family: 'Caveat', cursive; font-size: 1.2rem; font-weight: 600;">LinkedIn Profile</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white text-center py-8">
+        <div class="max-w-6xl mx-auto">
+            <p class="text-gray-300">&copy; 2025 Meera Madhavan. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Enhanced Scroll Animation Script -->
+    <script>
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Enhanced smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add dynamic scroll effects
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.hero-gradient');
+            if (parallax) {
+                const speed = scrolled * 0.5;
+                parallax.style.transform = `translateY(${speed}px)`;
+            }
+        });
+
+        // Function to scroll to top (hero section)
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+</body>
+</html>
