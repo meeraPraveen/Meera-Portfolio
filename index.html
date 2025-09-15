@@ -63,7 +63,7 @@
             padding: 5rem 1rem;
         }
 
-        /* Transparent Card Overlay Styles */
+        /* Fixed Scrolling Issue - Transparent Card Overlay Styles */
         .section-card {
             background: rgba(255, 255, 255, 0.3);
             backdrop-filter: blur(8px);
@@ -72,8 +72,10 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
             margin: 2rem auto;
             max-width: 1200px;
-            position: relative;
+            position: static;
             overflow: hidden;
+            z-index: 1;
+            clear: both;
         }
 
         .section-card::before {
@@ -87,22 +89,23 @@
             opacity: 0.7;
         }
 
-        /* Hero Section as Transparent Card */
+        /* Fixed Scrolling Issue - Hero Section as Transparent Card */
         .hero-gradient {
             background: rgba(255, 255, 255, 0.4);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 24px;
             box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-            margin: 2rem auto;
+            margin: 2rem auto 4rem auto;
             max-width: 1200px;
             min-height: 70vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
+            position: static;
             overflow: hidden;
             color: var(--text-dark);
+            z-index: 10;
         }
 
         .hero-gradient::before {
@@ -188,15 +191,14 @@
             border-color: rgba(255, 255, 255, 0.3);
         }
 
-        /* Enhanced Portfolio Cards */
+        /* Enhanced Portfolio Cards - Made Opaque */
         .portfolio-card {
-            background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(8px);
+            background: #FFFFFF;
             border-radius: 16px;
             padding: 2rem;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 2px solid var(--soft-beige);
+            border: 2px solid #E5E7EB;
             height: 100%;
             position: relative;
             overflow: hidden;
@@ -263,53 +265,91 @@
             border-left-color: var(--earthy-brown);
         }
 
-        /* Enhanced Process Steps */
+        /* Enhanced Process Steps - Made Opaque with Flow Layout */
+        .process-list {
+            counter-reset: step-counter;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        /* Responsive layout for process flow */
+        @media (min-width: 768px) {
+            .process-list {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 1rem;
+            }
+        }
+
         .process-step {
-            background: rgba(255, 255, 255, 0.4);
+            background: #FFFFFF;
             border-radius: 16px;
-            padding: 2rem;
-            margin-bottom: 1.5rem;
+            padding: 1.5rem;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
             border-left: 5px solid var(--accent-blue);
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-            backdrop-filter: blur(8px);
+            text-align: center;
         }
 
-        .process-step::before {
-            content: counter(step-counter);
-            counter-increment: step-counter;
+        /* Arrow connections between process steps */
+        .process-step:not(:last-child) {
+            position: relative;
+        }
+
+        .process-step:not(:last-child)::after {
+            content: '→';
             position: absolute;
-            right: 1.5rem;
-            top: 1.5rem;
+            right: -1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            color: var(--primary-coral);
+            font-weight: bold;
+            z-index: 10;
+        }
+
+        /* Step number styling */
+        .process-step .step-number {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
             background: linear-gradient(135deg, var(--primary-coral) 0%, var(--accent-blue) 100%);
             color: white;
-            width: 36px;
-            height: 36px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            font-size: 1rem;
+            font-size: 0.9rem;
             box-shadow: 0 2px 8px rgba(224, 122, 95, 0.3);
         }
 
-        .process-list {
-            counter-reset: step-counter;
-        }
-
         .process-step:hover {
-            transform: translateX(8px);
+            transform: translateY(-4px);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
         }
 
-        /* Enhanced Glass Cards */
+        /* Hide arrows on mobile */
+        @media (max-width: 767px) {
+            .process-step:not(:last-child)::after {
+                display: none;
+            }
+            .process-list {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        /* Enhanced Glass Cards - Made Opaque */
         .glass-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            background: #FFFFFF;
+            border: 2px solid #E5E7EB;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
             border-radius: 20px;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -320,16 +360,15 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
         }
 
-        /* Enhanced Testimonial Styling */
+        /* Enhanced Testimonial Styling - Made Opaque */
         .testimonial-card {
-            background: rgba(255, 255, 255, 0.4);
+            background: #FFFFFF;
             border-radius: 24px;
             padding: 3rem;
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
             position: relative;
-            border: 2px solid var(--soft-beige);
+            border: 2px solid #E5E7EB;
             transition: all 0.3s ease;
-            backdrop-filter: blur(8px);
         }
 
         .testimonial-card:hover {
@@ -348,19 +387,18 @@
             opacity: 0.2;
         }
 
-        /* Enhanced Contact Section */
+        /* Enhanced Contact Section - Made Opaque */
         .contact-link {
             display: inline-flex;
             align-items: center;
             padding: 1.25rem 2rem;
-            background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(8px);
+            background: #FFFFFF;
             border-radius: 16px;
             color: var(--text-dark);
             text-decoration: none;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
             transition: all 0.3s ease;
-            border: 2px solid var(--soft-beige);
+            border: 2px solid #E5E7EB;
             font-weight: 500;
         }
 
@@ -450,7 +488,7 @@
                 Sketches to Solutions
             </h1>
             <p class="text-xl md:text-2xl mb-8 opacity-95 max-w-4xl mx-auto" style="font-family: 'Caveat', cursive; font-weight: 600; letter-spacing: 0.01em; line-height: 1.6; font-size: 1.5rem; color: var(--chocolate-brown);">
-                I thrive on turning complexity into clarity through design. By blending creativity with technical know-how, I craft intuitive interfaces and seamless experiences that not only solve problems but make everyday workflows feel effortless. From the first sketch to a polished, production-ready product, my focus is always on creating solutions people love to use. Let's connect and bring thoughtful design to your next big idea.
+                I thrive on turning complexity into clarity through design and analysis. By combining creativity with technical know-how, I translate business requirements into clear wireframes and streamlined workflows that evolve into intuitive interfaces and seamless user experiences. From mapping processes to sketching early concepts and delivering polished, production-ready products, my focus is always on creating solutions people not only use but truly enjoy.<br><br>This website was developed with the support of Claude Code—reflecting my commitment to embracing AI adoption as a key part of my career growth.
             </p>
             <div class="flex flex-col items-center gap-6 mt-8">
                 <a href="#portfolio" class="btn-primary mb-4">
@@ -466,11 +504,11 @@
             <h2 class="section-title text-center">About Me</h2>
             <div class="max-w-4xl mx-auto">
                 <div class="glass-card p-8">
-                    <p class="text-lg mb-6 text-chocolate-medium leading-relaxed" style="font-weight: 400; letter-spacing: -0.005em;">
-                        With over a decade of experience in application support and development, I specialize in bridging the gap between design and engineering. My background in <strong class="text-chocolate">CRM development, cloud platforms, and automation</strong> allows me to bring a unique perspective to UI/UX design—balancing creativity with practicality.
+                    <p class="mb-6 text-chocolate-medium leading-relaxed" style="font-weight: 400; letter-spacing: -0.005em; font-size: 1rem;">
+                        With over a decade of experience in application support and development, I specialize in bridging the gap between design, business analysis, and engineering. My background in <strong class="text-chocolate">CRM development, cloud platforms, and automation</strong> enables me to translate complex business requirements into clear workflows and wireframes—laying the foundation for effective UI/UX design that balances creativity with practicality.
                     </p>
-                    <p class="text-lg text-chocolate-medium leading-relaxed" style="font-weight: 400; letter-spacing: -0.005em;">
-                        I believe in designing experiences that solve problems, simplify workflows, and enhance user satisfaction. From crafting wireframes to implementing production-ready applications, I ensure every solution is user-centered and technically sound.
+                    <p class="text-chocolate-medium leading-relaxed" style="font-weight: 400; letter-spacing: -0.005em; font-size: 1rem;">
+                        I believe in designing experiences that don't just look good but directly address business needs, streamline processes, and enhance user satisfaction. From analyzing requirements and mapping workflows to crafting wireframes and delivering production-ready applications, I ensure every solution is user-centered, technically sound, and business-driven.
                     </p>
                 </div>
             </div>
@@ -574,20 +612,24 @@
             <div class="max-w-4xl mx-auto">
                 <div class="process-list">
                     <div class="process-step fade-in">
-                        <h3 class="text-lg font-bold text-chocolate mb-2 text-center" style="font-family: 'Playfair Display', Georgia, serif;">Discover</h3>
-                        <p class="text-chocolate-medium leading-relaxed" style="font-weight: 400; letter-spacing: -0.005em; line-height: 1.7;">Understand user needs and business goals through research, interviews, and data analysis</p>
+                        <div class="step-number">1</div>
+                        <h3 class="text-lg font-bold text-chocolate mb-2" style="font-family: 'Playfair Display', Georgia, serif;">Discover</h3>
+                        <p class="text-chocolate-medium leading-relaxed" style="font-weight: 400; letter-spacing: -0.005em; line-height: 1.7; font-size: 1rem;">Understand user needs and business goals through research, interviews, and data analysis</p>
                     </div>
                     <div class="process-step fade-in">
-                        <h3 class="text-lg font-bold text-chocolate mb-2 text-center" style="font-family: 'Playfair Display', Georgia, serif;">Design</h3>
-                        <p class="text-chocolate-medium leading-relaxed" style="font-weight: 400; letter-spacing: -0.005em; line-height: 1.7;">Create wireframes, prototypes, and user flows that solve identified problems</p>
+                        <div class="step-number">2</div>
+                        <h3 class="text-lg font-bold text-chocolate mb-2" style="font-family: 'Playfair Display', Georgia, serif;">Design</h3>
+                        <p class="text-chocolate-medium leading-relaxed" style="font-weight: 400; letter-spacing: -0.005em; line-height: 1.7; font-size: 1rem;">Create wireframes, prototypes, and user flows that solve identified problems</p>
                     </div>
                     <div class="process-step fade-in">
-                        <h3 class="text-lg font-bold text-chocolate mb-2 text-center" style="font-family: 'Playfair Display', Georgia, serif;">Develop</h3>
-                        <p class="text-chocolate-medium leading-relaxed" style="font-weight: 400; letter-spacing: -0.005em; line-height: 1.7;">Build functional interfaces with clean, maintainable code and attention to detail</p>
+                        <div class="step-number">3</div>
+                        <h3 class="text-lg font-bold text-chocolate mb-2" style="font-family: 'Playfair Display', Georgia, serif;">Develop</h3>
+                        <p class="text-chocolate-medium leading-relaxed" style="font-weight: 400; letter-spacing: -0.005em; line-height: 1.7; font-size: 1rem;">Build functional interfaces with clean, maintainable code and attention to detail</p>
                     </div>
                     <div class="process-step fade-in">
-                        <h3 class="text-lg font-bold text-chocolate mb-2 text-center" style="font-family: 'Playfair Display', Georgia, serif;">Deliver</h3>
-                        <p class="text-chocolate-medium leading-relaxed" style="font-weight: 400; letter-spacing: -0.005em; line-height: 1.7;">Test, refine, and deploy solutions optimized for real-world use and performance</p>
+                        <div class="step-number">4</div>
+                        <h3 class="text-lg font-bold text-chocolate mb-2" style="font-family: 'Playfair Display', Georgia, serif;">Deliver</h3>
+                        <p class="text-chocolate-medium leading-relaxed" style="font-weight: 400; letter-spacing: -0.005em; line-height: 1.7; font-size: 1rem;">Test, refine, and deploy solutions optimized for real-world use and performance</p>
                     </div>
                 </div>
             </div>
@@ -601,8 +643,8 @@
             <h2 class="section-title text-center">Testimonials</h2>
             <div class="max-w-4xl mx-auto">
                 <div class="testimonial-card fade-in">
-                    <blockquote class="text-xl italic text-chocolate-medium mb-6 text-center leading-relaxed" style="font-family: 'Playfair Display', Georgia, serif; font-weight: 400; letter-spacing: -0.01em; line-height: 1.6;">
-                        Meera not only delivered technically sound solutions but also designed user-friendly tools that our teams loved working with.
+                    <blockquote class="text-xl italic text-chocolate-medium mb-6 text-center leading-relaxed" style="font-family: 'Caveat', cursive; font-weight: 600; letter-spacing: 0.01em; line-height: 1.6; font-size: 1.5rem;">
+                        Meera's expertise in requirements gathering and business analysis enabled the development of technically robust solutions that not only met our needs but were also intuitive and easy to use.
                     </blockquote>
                     <footer class="text-center">
                         <div class="font-semibold text-chocolate text-lg"><a href="https://linkedin.com/in/ashwin-k-05330a33" target="_blank" style="text-decoration: none; color: inherit; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Ashwin Krishnamurthy</a></div>
@@ -629,24 +671,27 @@
 
     <!-- Former Hero Content -->
     <section class="section-card section-padding">
-        <div class="max-w-6xl mx-auto text-center">
+        <div class="max-w-6xl mx-auto">
             <h2 class="section-title text-center" style="font-family: 'Playfair Display', Georgia, serif; letter-spacing: -0.02em;">
                 Designing Experiences That Matter
             </h2>
-            <p class="text-xl mb-8 text-chocolate max-w-4xl mx-auto leading-relaxed" style="font-family: 'Caveat', cursive; font-weight: 600; letter-spacing: 0.01em; line-height: 1.6; font-size: 1.5rem;">
-                I'm Meera Madhavan, a UI/UX focused developer ready to collaborate on your next project. Let's create digital experiences that are beautiful, functional, and reliable.
-                <br><br>Let's connect!
-                <br><br>- Meera
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center items-center gap-6 mt-8">
-                <a href="mailto:meeramadhavan@live.com" class="contact-link">
-                    <span class="text-2xl mr-3">📧</span>
-                    <span class="font-medium">meeramadhavan@live.com</span>
-                </a>
-                <a href="https://linkedin.com/in/madhavanmeera" target="_blank" class="contact-link">
-                    <span class="text-2xl mr-3">🔗</span>
-                    <span class="font-medium" style="font-family: 'Caveat', cursive; font-size: 1.2rem; font-weight: 600;">LinkedIn Profile</span>
-                </a>
+            <div class="max-w-4xl mx-auto">
+                <div class="glass-card p-8 text-center">
+                    <p class="mb-8 text-chocolate-medium leading-relaxed" style="font-family: 'Caveat', cursive; font-weight: 600; letter-spacing: 0.01em; line-height: 1.6; font-size: 1.5rem;">
+                        I am Meera Madhavan, ready to collaborate on your next project. Let's create digital experiences that are functional, and reliable.
+                        <br><br>- Meera
+                    </p>
+                    <div class="flex flex-col sm:flex-row justify-center items-center gap-6">
+                        <a href="mailto:meeramadhavan@live.com" class="contact-link">
+                            <span class="text-2xl mr-3">📧</span>
+                            <span class="font-medium">meeramadhavan@live.com</span>
+                        </a>
+                        <a href="https://linkedin.com/in/madhavanmeera" target="_blank" class="contact-link">
+                            <span class="text-2xl mr-3">🔗</span>
+                            <span class="font-medium">LinkedIn Profile</span>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -693,15 +738,8 @@
             });
         });
 
-        // Add dynamic scroll effects
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const parallax = document.querySelector('.hero-gradient');
-            if (parallax) {
-                const speed = scrolled * 0.5;
-                parallax.style.transform = `translateY(${speed}px)`;
-            }
-        });
+        // Fixed Scrolling Issue - Removed parallax effect that caused overlap
+        // Parallax effect removed to prevent hero section from overlapping with other sections
 
         // Function to scroll to top (hero section)
         function scrollToTop() {
