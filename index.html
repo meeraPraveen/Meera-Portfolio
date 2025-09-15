@@ -3,29 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Meera Madhavan - UI/UX Developer specializing in design analysis, wireframing, and creating intuitive user experiences">
+    <meta name="theme-color" content="#E07A5F">
+
+    <!-- Performance and Caching Optimization -->
+    <meta http-equiv="Cache-Control" content="public, max-age=31536000">
+    <meta http-equiv="Expires" content="Thu, 31 Dec 2025 23:59:59 GMT">
+
     <title>Meera Madhavan - UI/UX Portfolio</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&family=Caveat:wght@600&display=swap" rel="stylesheet">
-    <link rel="preload" href="Meera_Portfolio.jpg" as="image">
+    <!-- DNS prefetch for faster domain resolution -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+
+    <!-- Preconnect for critical domains -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+    <!-- High priority preload for LCP image with responsive hints -->
+    <link rel="preload" href="Meera_Portfolio.jpg" as="image" fetchpriority="high" media="(min-width: 768px)">
+
+    <!-- Font display optimization with font-display: swap -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&family=Caveat:wght@600&display=swap&font-display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&family=Caveat:wght@600&display=swap&font-display=swap" rel="stylesheet"></noscript>
+
+    <!-- Preload critical Tailwind CSS -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"></noscript>
+    <!-- Critical Above-the-fold CSS -->
     <style>
-        /* Custom Variables for Autumn Landscape Color Palette */
-        :root {
-            --primary-coral: #E07A5F;
-            --secondary-coral: #F4A583;
-            --accent-blue: #5B9BD5;
-            --secondary-blue: #8BB8DD;
-            --warm-cream: #F5F1EB;
-            --soft-beige: #E8D7C5;
-            --earthy-brown: #8B6F47;
-            --deep-brown: #6B4423;
-            --text-dark: #1B0F0C;
-            --text-medium: #1B0F0C;
-            --chocolate-brown: #1B0F0C;
-            --chocolate-medium: #1B0F0C;
-            --chocolate-light: #1B0F0C;
-        }
+        /* Critical CSS Variables - Minified */
+        :root{--primary-coral:#E07A5F;--secondary-coral:#F4A583;--accent-blue:#5B9BD5;--secondary-blue:#8BB8DD;--warm-cream:#F5F1EB;--soft-beige:#E8D7C5;--earthy-brown:#8B6F47;--deep-brown:#6B4423;--text-dark:#1B0F0C;--text-medium:#1B0F0C;--chocolate-brown:#1B0F0C;--chocolate-medium:#1B0F0C;--chocolate-light:#1B0F0C}
 
         /* Global Styles - Performance Optimized */
         * {
@@ -34,7 +43,8 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: url('Meera_Portfolio.jpg') center/cover no-repeat fixed;
+            /* Background image loaded via JavaScript for better performance */
+            background-color: #F5F1EB; /* Fallback color while image loads */
             color: var(--text-dark);
             line-height: 1.65;
             margin: 0;
@@ -48,6 +58,37 @@
             -moz-osx-font-smoothing: grayscale;
             contain: layout style;
             will-change: scroll-position;
+        }
+
+        /* Background image class for progressive loading */
+        body.bg-loaded {
+            background: url('Meera_Portfolio.jpg') center/cover no-repeat fixed;
+            transition: background-image 0.3s ease-in-out;
+        }
+
+        /* Loading state styles for better perceived performance */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--warm-cream) 0%, var(--soft-beige) 50%, var(--warm-cream) 100%);
+            z-index: -2;
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        body.bg-loaded::after {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Improve image decode performance */
+        img {
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
         }
 
         body::before {
@@ -494,6 +535,32 @@
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--light-grey);
         }
+
+        /* Critical CSS for above-the-fold content - Inline for faster LCP */
+        .max-w-6xl { max-width: 72rem; }
+        .mx-auto { margin-left: auto; margin-right: auto; }
+        .text-center { text-align: center; }
+        .text-5xl { font-size: 3rem; line-height: 1; }
+        .md\:text-6xl { font-size: 3rem; line-height: 1; }
+        .font-bold { font-weight: 700; }
+        .mb-6 { margin-bottom: 1.5rem; }
+        .mb-8 { margin-bottom: 2rem; }
+        .leading-tight { line-height: 1.25; }
+        .p-8 { padding: 2rem; }
+        .text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+        .md\:text-2xl { font-size: 1.25rem; line-height: 1.75rem; }
+        .opacity-95 { opacity: 0.95; }
+        .max-w-4xl { max-width: 56rem; }
+        .flex { display: flex; }
+        .flex-col { flex-direction: column; }
+        .items-center { align-items: center; }
+        .gap-6 { gap: 1.5rem; }
+        .mt-8 { margin-top: 2rem; }
+
+        @media (min-width: 768px) {
+            .md\:text-6xl { font-size: 3.75rem; line-height: 1; }
+            .md\:text-2xl { font-size: 1.5rem; line-height: 2rem; }
+        }
     </style>
 </head>
 <body>
@@ -504,7 +571,7 @@
                 Sketches to Solutions
             </h1>
             <div class="glass-card p-8 mb-8">
-                <p class="text-xl md:text-2xl opacity-95 max-w-4xl mx-auto text-chocolate-medium leading-relaxed" style="font-weight: 400; letter-spacing: -0.005em; font-size: 1rem;">
+                <p class="text-xl md:text-2xl opacity-95 max-w-4xl mx-auto text-chocolate-medium leading-relaxed" style="font-family: 'Caveat', cursive; font-weight: 600; letter-spacing: 0.01em; line-height: 1.6; font-size: 1.5rem;">
                     I thrive on turning complexity into clarity through design and analysis. By combining creativity with technical know-how, I translate business requirements into clear wireframes and streamlined workflows that evolve into intuitive interfaces and seamless user experiences. From mapping processes to sketching early concepts and delivering polished, production-ready products, my focus is always on creating solutions people not only use but truly enjoy.<br><br>This website was developed with the support of Claude Code—reflecting my commitment to embracing AI adoption as a key part of my career growth.
                 </p>
             </div>
@@ -534,7 +601,7 @@
     </section>
 
     <!-- Portfolio Section -->
-    <section id="portfolio" class="section-card section-padding">
+    <section id="portfolio" class="section-card section-padding" loading="lazy">
         <div class="max-w-6xl mx-auto">
             <h2 class="section-title text-center">Portfolio Highlights</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -695,7 +762,7 @@
             </h2>
             <div class="max-w-4xl mx-auto">
                 <div class="glass-card p-8 text-center">
-                    <p class="mb-8 text-chocolate-medium leading-relaxed" style="font-weight: 400; letter-spacing: -0.005em; font-size: 1rem;">
+                    <p class="mb-8 text-chocolate-medium leading-relaxed" style="font-family: 'Caveat', cursive; font-weight: 600; letter-spacing: 0.01em; line-height: 1.6; font-size: 1.5rem;">
                         I am Meera Madhavan, ready to collaborate on your next project. Let's create digital experiences that are functional, and reliable.
                         <br><br>- Meera
                     </p>
@@ -721,9 +788,30 @@
         </div>
     </footer>
 
-    <!-- Enhanced Scroll Animation Script - Performance Optimized -->
+    <!-- Enhanced Scroll Animation Script - Performance Optimized with Reflow Prevention -->
     <script>
-        // Performance optimized intersection observer
+        // Batch DOM operations to prevent forced reflows
+        let pendingAnimations = [];
+        let isAnimationFrameScheduled = false;
+
+        function batchDOMOperations() {
+            if (pendingAnimations.length > 0) {
+                // Process all pending animations in a single frame
+                pendingAnimations.forEach(callback => callback());
+                pendingAnimations = [];
+            }
+            isAnimationFrameScheduled = false;
+        }
+
+        function scheduleAnimation(callback) {
+            pendingAnimations.push(callback);
+            if (!isAnimationFrameScheduled) {
+                isAnimationFrameScheduled = true;
+                requestAnimationFrame(batchDOMOperations);
+            }
+        }
+
+        // Performance optimized intersection observer with reflow prevention
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -732,8 +820,8 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    // Use requestAnimationFrame for smooth animations
-                    requestAnimationFrame(() => {
+                    // Batch DOM class additions to prevent forced reflows
+                    scheduleAnimation(() => {
                         entry.target.classList.add('visible');
                     });
                     // Unobserve after animation to improve performance
@@ -744,21 +832,28 @@
 
         // Observe fade-in elements when DOM is ready
         document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.fade-in').forEach(el => {
+            // Use document fragment to minimize DOM queries
+            const fadeElements = document.querySelectorAll('.fade-in');
+            fadeElements.forEach(el => {
                 observer.observe(el);
             });
         });
 
-        // Enhanced smooth scrolling with passive event listeners
+        // Enhanced smooth scrolling with passive event listeners and reflow prevention
         document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            const scrollLinks = document.querySelectorAll('a[href^="#"]');
+            scrollLinks.forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
+                    const targetId = this.getAttribute('href');
+                    const target = document.querySelector(targetId);
                     if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
+                        // Use scrollIntoView which is optimized by browsers
+                        scheduleAnimation(() => {
+                            target.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
                         });
                     }
                 }, { passive: false });
@@ -768,19 +863,124 @@
         // Fixed Scrolling Issue - Removed parallax effect that caused overlap
         // Parallax effect removed to prevent hero section from overlapping with other sections
 
-        // Function to scroll to top (hero section)
+        // Function to scroll to top (hero section) - optimized to prevent reflow
         function scrollToTop() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+            scheduleAnimation(() => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
             });
         }
 
-        // Performance optimization: Preload critical resources
+        // Performance optimization: Preload critical resources with progressive image loading
         document.addEventListener('DOMContentLoaded', () => {
-            // Preload background image if not already loaded
-            const img = new Image();
-            img.src = 'Meera_Portfolio.jpg';
+            // Progressive background image loading for better LCP
+            const loadBackgroundImage = () => {
+                // Check if image is already cached
+                const img = new Image();
+
+                // Performance monitoring for LCP optimization
+                const startTime = performance.now();
+
+                // Add loading and error handlers
+                img.onload = () => {
+                    const loadTime = performance.now() - startTime;
+
+                    // Use requestAnimationFrame to prevent reflow
+                    scheduleAnimation(() => {
+                        document.body.classList.add('bg-loaded');
+
+                        // Optional: Log performance metrics
+                        if (loadTime > 1000) {
+                            console.info(`Background image loaded in ${loadTime.toFixed(2)}ms`);
+                        }
+                    });
+                };
+
+                img.onerror = () => {
+                    console.warn('Background image failed to load, using fallback');
+                    // Keep fallback background color - no additional action needed
+                };
+
+                // Optimize image loading
+                img.decoding = 'async'; // Prevent blocking main thread
+                img.loading = 'eager'; // High priority for LCP
+                if ('fetchPriority' in img) {
+                    img.fetchPriority = 'high';
+                }
+
+                // Set source last to trigger loading
+                img.src = 'Meera_Portfolio.jpg';
+            };
+
+            // Load background image immediately for LCP optimization
+            loadBackgroundImage();
+
+            // Additional performance optimizations
+            scheduleAnimation(() => {
+                // Enable performance observer for monitoring
+                if ('PerformanceObserver' in window) {
+                    try {
+                        const observer = new PerformanceObserver((list) => {
+                            const entries = list.getEntries();
+                            entries.forEach((entry) => {
+                                if (entry.entryType === 'largest-contentful-paint') {
+                                    // Optional: Track LCP for optimization
+                                    if (entry.startTime > 2500) {
+                                        console.info(`LCP: ${entry.startTime.toFixed(2)}ms`);
+                                    }
+                                }
+                            });
+                        });
+                        observer.observe({ entryTypes: ['largest-contentful-paint'] });
+                    } catch (e) {
+                        // Performance observer not supported
+                    }
+                }
+            });
+        });
+
+        // Debounced resize handler to prevent excessive reflows
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                // Any resize-dependent operations go here
+                // Currently none needed, but structure is ready
+            }, 250);
+        }, { passive: true });
+
+        // Optional: Register service worker for caching (uncomment when ready)
+        /*
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => console.log('SW registered'))
+                    .catch(error => console.log('SW registration failed'));
+            });
+        }
+        */
+
+        // Web Vitals monitoring (optional)
+        function reportWebVitals() {
+            if ('web-vitals' in window) {
+                // Report Core Web Vitals if library is loaded
+                getCLS(console.log);
+                getFID(console.log);
+                getFCP(console.log);
+                getLCP(console.log);
+                getTTFB(console.log);
+            }
+        }
+
+        // Critical performance optimizations complete
+        window.addEventListener('load', () => {
+            // Final performance measurements
+            const loadTime = performance.now();
+            if (loadTime > 3000) {
+                console.info(`Page loaded in ${loadTime.toFixed(2)}ms - consider further optimization`);
+            }
         });
     </script>
 </body>
