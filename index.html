@@ -108,33 +108,7 @@
             padding: 5rem 1rem;
         }
 
-        /* Fixed Scrolling Issue - Transparent Card Overlay Styles - Performance Optimized */
-        .section-card {
-            background: rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 24px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            margin: 2rem auto;
-            max-width: 1200px;
-            position: static;
-            overflow: hidden;
-            z-index: 1;
-            clear: both;
-            contain: layout style;
-            transform: translateZ(0);
-        }
-
-        .section-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary-coral) 0%, var(--accent-blue) 100%);
-            opacity: 0.7;
-        }
+        /* Section card styles removed - using blob containers instead */
 
         /* Fixed Scrolling Issue - Hero Section as Transparent Card - Performance Optimized */
         .hero-gradient {
@@ -240,14 +214,16 @@
             border-color: rgba(255, 255, 255, 0.3);
         }
 
-        /* Enhanced Portfolio Cards - Made Opaque - Performance Optimized */
+        /* Enhanced Portfolio Cards - Made Opaque with Oval Shape - Performance Optimized */
         .portfolio-card {
-            background: #FFFFFF;
-            border-radius: 16px;
-            padding: 2rem;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 45% / 40%;
+            padding: 2.5rem 2rem;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
             transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 2px solid #E5E7EB;
+            border: 2px solid rgba(229, 231, 235, 0.5);
             height: 100%;
             position: relative;
             overflow: hidden;
@@ -293,14 +269,15 @@
 
         /* Enhanced Skills Section */
         .skill-category {
-            background: rgba(255, 255, 255, 0.4);
-            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 40% / 35%;
             padding: 2rem;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
             border-left: 5px solid var(--primary-coral);
             transition: all 0.3s ease;
             position: relative;
-            backdrop-filter: blur(8px);
         }
 
         .skill-category:hover {
@@ -336,14 +313,16 @@
         }
 
         .process-step {
-            background: #FFFFFF;
-            border-radius: 16px;
-            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 45% / 40%;
+            padding: 2rem 1.5rem;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
-            border-left: 5px solid var(--accent-blue);
+            border: 2px solid rgba(91, 155, 213, 0.3);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
-            overflow: hidden;
+            overflow: visible;
             text-align: center;
             contain: layout style;
             will-change: transform;
@@ -400,12 +379,14 @@
             }
         }
 
-        /* Enhanced Glass Cards - Made Opaque - Performance Optimized */
+        /* Enhanced Glass Cards - Oval Shape with Glass Effect - Performance Optimized */
         .glass-card {
-            background: #FFFFFF;
-            border: 2px solid #E5E7EB;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 2px solid rgba(229, 231, 235, 0.4);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            border-radius: 20px;
+            border-radius: 45% / 35%;
             transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             contain: layout style;
             will-change: transform;
@@ -414,22 +395,26 @@
         .glass-card:hover {
             transform: translateY(-4px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            background: rgba(255, 255, 255, 0.7);
         }
 
-        /* Enhanced Testimonial Styling - Made Opaque */
+        /* Enhanced Testimonial Styling - Oval Shape with Glass Effect */
         .testimonial-card {
-            background: #FFFFFF;
-            border-radius: 24px;
-            padding: 3rem;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 50% / 35%;
+            padding: 3rem 2.5rem;
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
             position: relative;
-            border: 2px solid #E5E7EB;
+            border: 2px solid rgba(229, 231, 235, 0.4);
             transition: all 0.3s ease;
         }
 
         .testimonial-card:hover {
-            border-color: var(--accent-blue);
+            border-color: rgba(91, 155, 213, 0.5);
             transform: translateY(-4px);
+            background: rgba(255, 255, 255, 0.85);
         }
 
         .testimonial-card::before {
@@ -443,26 +428,29 @@
             opacity: 0.2;
         }
 
-        /* Enhanced Contact Section - Made Opaque */
+        /* Enhanced Contact Section - Oval Shape with Glass Effect */
         .contact-link {
             display: inline-flex;
             align-items: center;
-            padding: 1.25rem 2rem;
-            background: #FFFFFF;
-            border-radius: 16px;
+            padding: 1.25rem 2.5rem;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 50px / 40px;
             color: var(--text-dark);
             text-decoration: none;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
             transition: all 0.3s ease;
-            border: 2px solid #E5E7EB;
+            border: 2px solid rgba(229, 231, 235, 0.4);
             font-weight: 500;
         }
 
         .contact-link:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-            border-color: var(--accent-blue);
-            color: var(--secondary-navy);
+            border-color: rgba(91, 155, 213, 0.6);
+            background: rgba(255, 255, 255, 0.85);
+            color: var(--text-dark);
             text-decoration: none;
         }
 
@@ -494,9 +482,752 @@
             .hero-gradient h1 {
                 font-size: 2rem !important;
             }
-            
+
             .section-title {
                 font-size: 1.875rem;
+            }
+        }
+
+        /* Semi-Circle Container */
+        .semi-circle-container {
+            position: relative;
+            width: 100%;
+            max-width: 1400px;
+            height: 100vh;
+            min-height: 700px;
+            margin: 0 auto;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 2rem;
+        }
+
+        @media (max-width: 1100px) {
+            .semi-circle-container {
+                max-width: 100vw;
+                min-height: 600px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .semi-circle-container {
+                min-height: 500px;
+                padding-bottom: 1rem;
+            }
+        }
+
+        /* Circular Blob Styles */
+        .blob-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            align-items: center;
+            padding: 3rem 1rem;
+            min-height: 60vh;
+        }
+
+        .section-blob {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.05) 100%);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 3px solid rgba(218, 165, 32, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow:
+                0 15px 50px rgba(0, 0, 0, 0.25),
+                0 5px 15px rgba(0, 0, 0, 0.1),
+                0 0 20px rgba(218, 165, 32, 0.3),
+                inset 0 2px 5px rgba(255, 255, 255, 0.6),
+                inset 0 -2px 5px rgba(0, 0, 0, 0.15),
+                inset -3px -3px 10px rgba(0, 0, 0, 0.1),
+                inset 3px 3px 10px rgba(255, 255, 255, 0.4);
+            position: absolute;
+            overflow: hidden;
+            transform-style: preserve-3d;
+        }
+
+        /* Central blob at the bottom center of semi-circle */
+        .central-blob {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+
+        /* Orbit blobs positioned in semi-circle */
+        .orbit-blob {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            z-index: 1;
+        }
+
+        /* Position blobs in a semi-circle - base parallel to bottom */
+        /* Radius: 400px, 6 blobs including center */
+        /* Angles: -150°, -120°, -90°, -60°, -30° from bottom center */
+
+        .orbit-blob[data-position="0"] {
+            /* -150° (far left) */
+            transform: translateX(-50%) translate(-346px, -200px);
+        }
+
+        .orbit-blob[data-position="1"] {
+            /* -120° */
+            transform: translateX(-50%) translate(-200px, -346px);
+        }
+
+        .orbit-blob[data-position="2"] {
+            /* -60° */
+            transform: translateX(-50%) translate(200px, -346px);
+        }
+
+        .orbit-blob[data-position="3"] {
+            /* -30° (far right) */
+            transform: translateX(-50%) translate(346px, -200px);
+        }
+
+        .orbit-blob[data-position="4"] {
+            /* -90° (top center) */
+            transform: translateX(-50%) translate(0px, -400px);
+        }
+
+        @media (max-width: 1100px) {
+            .orbit-blob[data-position="0"] {
+                transform: translateX(-50%) translate(-260px, -150px);
+            }
+
+            .orbit-blob[data-position="1"] {
+                transform: translateX(-50%) translate(-150px, -260px);
+            }
+
+            .orbit-blob[data-position="2"] {
+                transform: translateX(-50%) translate(150px, -260px);
+            }
+
+            .orbit-blob[data-position="3"] {
+                transform: translateX(-50%) translate(260px, -150px);
+            }
+
+            .orbit-blob[data-position="4"] {
+                transform: translateX(-50%) translate(0px, -300px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .orbit-blob[data-position="0"] {
+                transform: translateX(-50%) translate(-200px, -115px);
+            }
+
+            .orbit-blob[data-position="1"] {
+                transform: translateX(-50%) translate(-115px, -200px);
+            }
+
+            .orbit-blob[data-position="2"] {
+                transform: translateX(-50%) translate(115px, -200px);
+            }
+
+            .orbit-blob[data-position="3"] {
+                transform: translateX(-50%) translate(200px, -115px);
+            }
+
+            .orbit-blob[data-position="4"] {
+                transform: translateX(-50%) translate(0px, -230px);
+            }
+
+            .section-blob {
+                width: 150px;
+                height: 150px;
+            }
+
+            .blob-title {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* 3D depth effect with pseudo-element - glossy highlight */
+        .section-blob::before {
+            content: '';
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            width: 50%;
+            height: 50%;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.3) 40%, transparent 70%);
+            opacity: 0.7;
+            pointer-events: none;
+            border-radius: 50%;
+            filter: blur(15px);
+        }
+
+        /* Bottom shadow for 3D depth */
+        .section-blob::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 10%;
+            width: 80%;
+            height: 10px;
+            background: radial-gradient(ellipse, rgba(0, 0, 0, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(8px);
+            z-index: -1;
+        }
+
+        .blob-title {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            text-align: center;
+            padding: 1rem;
+            z-index: 2;
+            transition: opacity 0.3s ease;
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+        }
+
+        .blob-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 4rem 3rem;
+            opacity: 0;
+            visibility: hidden;
+            overflow: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            background: transparent;
+            border-radius: inherit;
+            color: var(--text-dark);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Rectangular card within circular blob */
+        .blob-content-card {
+            width: 90%;
+            height: 85%;
+            background: transparent;
+            border-radius: 20px;
+            padding: 2rem;
+            overflow-x: auto;
+            overflow-y: auto;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE and Edge */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blob-content-card::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
+
+        /* Enhanced text styling within blob cards - unified font sizes */
+        .blob-content-card p,
+        .blob-content-card .text-chocolate-medium,
+        .blob-content-card .leading-relaxed,
+        .blob-content-card ul,
+        .blob-content-card ul li,
+        .blob-content-card .portfolio-item-content ul,
+        .blob-content-card .portfolio-item-content ul li,
+        .blob-content-card .portfolio-item-content p,
+        .blob-content-card .process-step p {
+            font-size: 1rem !important;
+            line-height: 1.8 !important;
+            letter-spacing: 0.015em;
+            font-weight: 500;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+        }
+
+        .blob-content-card h2.section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .blob-content-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+        }
+
+        .blob-content-card blockquote {
+            font-size: 1.75rem !important;
+            line-height: 1.8 !important;
+        }
+
+        @media (max-width: 768px) {
+            .blob-content-card h2.section-title {
+                font-size: 1.75rem;
+            }
+
+            .blob-content-card p,
+            .blob-content-card ul li {
+                font-size: 0.9rem !important;
+            }
+
+            .blob-content-card blockquote {
+                font-size: 1.25rem !important;
+            }
+        }
+
+        /* Optimize for larger screens */
+        @media (min-width: 1200px) {
+            .blob-content-card {
+                width: 90%;
+                height: 85%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .blob-content-card {
+                width: 90%;
+                height: 85%;
+                padding: 1.5rem;
+            }
+        }
+
+        .section-blob.expanded {
+            width: 80vw;
+            max-width: 900px;
+            height: 80vw;
+            max-height: 900px;
+            min-height: 600px;
+            border-radius: 50%;
+            z-index: 100;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0.15) 100%);
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            border: 4px solid rgba(218, 165, 32, 0.7);
+            box-shadow:
+                0 25px 80px rgba(0, 0, 0, 0.3),
+                0 10px 30px rgba(0, 0, 0, 0.15),
+                0 0 30px rgba(218, 165, 32, 0.4),
+                inset 0 3px 8px rgba(255, 255, 255, 0.7),
+                inset 0 -3px 8px rgba(0, 0, 0, 0.2),
+                inset -5px -5px 15px rgba(0, 0, 0, 0.1),
+                inset 5px 5px 15px rgba(255, 255, 255, 0.5);
+            padding: 3rem 2rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) !important;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE and Edge */
+        }
+
+        .section-blob.expanded::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
+
+        .section-blob.expanded::after {
+            display: none;
+        }
+
+        .section-blob.expanded::before {
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+        }
+
+        .section-blob.expanded .blob-title {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .section-blob.expanded .blob-content {
+            opacity: 1;
+            visibility: visible;
+            position: relative;
+        }
+
+        .section-blob.expanded .section-title {
+            display: none;
+        }
+
+        .blob-close {
+            position: fixed;
+            top: calc(50% - 45vh);
+            right: calc(50% - 45vw);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(218, 165, 32, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 3px solid rgba(255, 255, 255, 0.8);
+            color: white;
+            font-size: 1.75rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 1001;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        @media (min-width: 1200px) {
+            .blob-close {
+                top: calc(50% - 450px);
+                right: calc(50% - 450px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .blob-close {
+                top: calc(50% - 47.5vh);
+                right: calc(50% - 47.5vw);
+                width: 45px;
+                height: 45px;
+                font-size: 1.5rem;
+            }
+        }
+
+        .section-blob.expanded .blob-close {
+            display: flex;
+        }
+
+        .blob-close:hover {
+            transform: rotate(90deg) scale(1.1);
+            background: rgba(218, 165, 32, 1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .section-blob:not(.expanded):hover {
+            box-shadow:
+                0 15px 50px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .blob-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            z-index: 99;
+        }
+
+        .blob-backdrop.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Add subtle colored tints to each blob for variety */
+        .section-blob:nth-child(1) {
+            border-color: rgba(224, 122, 95, 0.4);
+        }
+
+        .section-blob:nth-child(1)::before {
+            background: radial-gradient(circle, rgba(224, 122, 95, 0.15) 0%, transparent 70%);
+        }
+
+        .section-blob:nth-child(2) {
+            border-color: rgba(91, 155, 213, 0.4);
+        }
+
+        .section-blob:nth-child(2)::before {
+            background: radial-gradient(circle, rgba(91, 155, 213, 0.15) 0%, transparent 70%);
+        }
+
+        .section-blob:nth-child(3) {
+            border-color: rgba(139, 111, 71, 0.4);
+        }
+
+        .section-blob:nth-child(3)::before {
+            background: radial-gradient(circle, rgba(139, 111, 71, 0.15) 0%, transparent 70%);
+        }
+
+        .section-blob:nth-child(4) {
+            border-color: rgba(224, 122, 95, 0.4);
+        }
+
+        .section-blob:nth-child(4)::before {
+            background: radial-gradient(circle, rgba(244, 165, 131, 0.15) 0%, transparent 70%);
+        }
+
+        .section-blob:nth-child(5) {
+            border-color: rgba(91, 155, 213, 0.4);
+        }
+
+        .section-blob:nth-child(5)::before {
+            background: radial-gradient(circle, rgba(139, 184, 221, 0.15) 0%, transparent 70%);
+        }
+
+        @media (min-width: 1200px) {
+            .section-blob.expanded {
+                width: 900px;
+                height: 900px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section-blob.expanded {
+                width: 95vw;
+                height: 95vw;
+                max-height: 95vh;
+                min-height: 500px;
+                padding: 2rem 1.5rem;
+            }
+
+            .blob-content {
+                padding: 3rem 1.5rem;
+            }
+        }
+
+        /* Portfolio grid layout */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            row-gap: 4rem;
+            padding: 2rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+                row-gap: 3rem;
+            }
+        }
+
+        /* Portfolio item container */
+        .portfolio-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Sub-blob styles - stationary */
+        .sub-blob {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow:
+                0 6px 24px rgba(0, 0, 0, 0.12),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+            position: relative;
+            transform-style: preserve-3d;
+        }
+
+        .sub-blob::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.25) 0%, transparent 70%);
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .sub-blob:hover {
+            box-shadow:
+                0 8px 28px rgba(0, 0, 0, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .sub-blob-icon {
+            font-size: 1.75rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .sub-blob-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-align: center;
+            color: var(--text-dark);
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Portfolio item content - collapsible */
+        .portfolio-item-content {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.4s ease, opacity 0.3s ease, margin 0.3s ease;
+            margin-top: 0;
+        }
+
+        .portfolio-item.expanded .portfolio-item-content {
+            max-height: 500px;
+            opacity: 1;
+            margin-top: 0.5rem;
+        }
+
+        /* Circular dial navigation */
+        .dial-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            height: 700px;
+            margin: 2rem auto;
+            display: none;
+        }
+
+        .dial-container.active {
+            display: block;
+        }
+
+        .dial-circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            transform: translate(-50%, -50%);
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .dial-content-wrapper {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 60%;
+            height: 60%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .dial-content {
+            opacity: 0;
+            visibility: hidden;
+            position: absolute;
+            padding: 1.5rem;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+            text-align: center;
+            max-height: 100%;
+            overflow-y: auto;
+        }
+
+        .dial-content.active {
+            opacity: 1;
+            visibility: visible;
+            position: relative;
+        }
+
+        .dial-nav-dot {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .dial-nav-dot:hover {
+            background: rgba(255, 255, 255, 0.5);
+            transform: scale(1.15);
+        }
+
+        .dial-nav-dot.active {
+            background: rgba(255, 255, 255, 0.6);
+            border-color: rgba(224, 122, 95, 0.8);
+            box-shadow: 0 6px 20px rgba(224, 122, 95, 0.3);
+        }
+
+        .dial-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            color: var(--text-dark);
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .dial-close:hover {
+            transform: rotate(90deg) scale(1.1);
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .sub-blob {
+                width: 100px;
+                height: 100px;
+            }
+
+            .sub-blob-icon {
+                font-size: 1.5rem;
+            }
+
+            .dial-container {
+                max-width: 90vw;
+                height: 90vw;
+            }
+
+            .dial-nav-dot {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
             }
         }
 
@@ -564,204 +1295,199 @@
     </style>
 </head>
 <body>
-    <!-- Sketches to Solutions as Hero -->
-    <header id="hero" class="hero-gradient section-padding">
-        <div class="hero-content max-w-6xl mx-auto text-center">
-            <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight" style="font-family: 'Playfair Display', Georgia, serif; letter-spacing: -0.02em; color: var(--chocolate-brown);">
-                Sketches to Solutions
-            </h1>
-            <div class="glass-card p-8 mb-8">
-                <p class="text-xl md:text-2xl opacity-95 max-w-4xl mx-auto text-chocolate-medium leading-relaxed" style="font-weight: 400; letter-spacing: -0.005em; font-size: 1rem;">
-                    I thrive on turning complexity into clarity through design and analysis. By combining creativity with technical know-how, I translate business requirements into clear wireframes and streamlined workflows that evolve into intuitive interfaces and seamless user experiences. From mapping processes to sketching early concepts and delivering polished, production-ready products, my focus is always on creating solutions people not only use but truly enjoy.<br><br>This website was developed with the support of Claude Code—reflecting my commitment to embracing AI adoption as a key part of my career growth.
-                </p>
-            </div>
-            <div class="flex flex-col items-center gap-6 mt-8">
-                <a href="#portfolio" class="btn-primary mb-4">
-                    Highlights
-                </a>
+    <!-- Backdrop for expanded blobs -->
+    <div class="blob-backdrop" id="blobBackdrop"></div>
+
+    <!-- Semi-Circle Dial Container -->
+    <div class="semi-circle-container">
+        <!-- Design Alchemy Blob (center) -->
+        <div class="section-blob central-blob" data-blob="design-alchemy">
+            <div class="blob-title">Design<br>Alchemy</div>
+            <div class="blob-content">
+                <button class="blob-close" aria-label="Close">×</button>
+                <div class="blob-content-card">
+                    <h2 class="section-title text-center" style="margin-bottom: 1rem;">Design Alchemy</h2>
+                    <h3 class="text-center text-chocolate" style="font-family: 'Playfair Display', Georgia, serif; font-style: italic; margin-bottom: 1.5rem; opacity: 0.8;">Sketches to Solutions</h3>
+                    <p class="text-xl md:text-2xl opacity-95 text-chocolate-medium leading-relaxed" style="font-weight: 400; letter-spacing: -0.005em; font-size: 1rem;">
+                        I thrive on turning complexity into clarity through design and analysis. By combining creativity with technical know-how, I translate business requirements into clear wireframes and streamlined workflows that evolve into intuitive interfaces and seamless user experiences. From mapping processes to sketching early concepts and delivering polished, production-ready products, my focus is always on creating solutions people not only use but truly enjoy.<br><br>This website was developed with the support of Claude Code—reflecting my commitment to embracing AI adoption as a key part of my career growth.
+                    </p>
+                </div>
             </div>
         </div>
-    </header>
 
-    <!-- About Me Section -->
-    <section class="section-card section-padding">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="section-title text-center">About Me</h2>
-            <div class="max-w-4xl mx-auto">
-                <div class="glass-card p-8">
-                    <p class="mb-6 text-chocolate-medium leading-relaxed" style="font-weight: 400; letter-spacing: -0.005em; font-size: 1rem;">
-                        With over a decade of experience in application support and development, I specialize in bridging the gap between design, business analysis, and engineering. My background in <strong class="text-chocolate">CRM development, cloud platforms, and automation</strong> enables me to translate complex business requirements into clear workflows and wireframes—laying the foundation for effective UI/UX design that balances creativity with practicality.
-                    </p>
+        <!-- About Me Blob -->
+        <div class="section-blob orbit-blob" data-blob="about" data-position="0">
+            <div class="blob-title">About Me</div>
+            <div class="blob-content">
+                <button class="blob-close" aria-label="Close">×</button>
+                <div class="blob-content-card">
+                    <h2 class="section-title text-center" style="margin-bottom: 2rem;">About Me</h2>
                     <p class="text-chocolate-medium leading-relaxed" style="font-weight: 400; letter-spacing: -0.005em; font-size: 1rem;">
-                        I believe in designing experiences that don't just look good but directly address business needs, streamline processes, and enhance user satisfaction. From analyzing requirements and mapping workflows to crafting wireframes and delivering production-ready applications, I ensure every solution is user-centered, technically sound, and business-driven.
+                        With over a decade in application support and development, I bring design, analysis, and engineering together to create meaningful digital experiences. My background in CRM, cloud platforms, and automation helps me turn complex requirements into clear workflows and wireframes that evolve into intuitive, user-centered designs. I focus on building solutions that look good, work seamlessly, and drive real business impact.
                     </p>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="section-card section-padding" loading="lazy">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="section-title text-center">Portfolio Highlights</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="portfolio-card fade-in">
-                    <div class="portfolio-icon">
-                        📊
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 text-chocolate text-center" style="font-family: 'Playfair Display', Georgia, serif; letter-spacing: -0.01em;">Dashboard Redesign</h3>
-                    <ul class="text-chocolate-medium leading-relaxed text-left" style="font-weight: 400; letter-spacing: -0.005em; line-height: 1.7; list-style: none; padding-left: 0;">
-                        <li style="margin-bottom: 0.5rem; position: relative; padding-left: 1.5rem;">
-                            <span style="position: absolute; left: 0; color: var(--chocolate-brown);">•</span>
-                            Redesigned and developed a responsive web dashboard to monitor application performance and escalations.
-                        </li>
-                        <li style="margin-bottom: 0.5rem; position: relative; padding-left: 1.5rem;">
-                            <span style="position: absolute; left: 0; color: var(--chocolate-brown);">•</span>
-                            Improved usability with intuitive data visualizations and color-coded alerts.
-                        </li>
-                        <li style="margin-bottom: 0.5rem; position: relative; padding-left: 1.5rem;">
-                            <span style="position: absolute; left: 0; color: var(--chocolate-brown);">•</span>
-                            Achieved an <strong class="text-chocolate">80% increase in issue tracking visibility</strong>.
-                        </li>
-                    </ul>
-                </div>
-                <div class="portfolio-card fade-in">
-                    <div class="portfolio-icon">
-                        🔄
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 text-chocolate text-center" style="font-family: 'Playfair Display', Georgia, serif; letter-spacing: -0.01em;">RPA Workflow Migration</h3>
-                    <ul class="text-chocolate-medium leading-relaxed text-left" style="font-weight: 400; letter-spacing: -0.005em; line-height: 1.7; list-style: none; padding-left: 0;">
-                        <li style="margin-bottom: 0.5rem; position: relative; padding-left: 1.5rem;">
-                            <span style="position: absolute; left: 0; color: var(--chocolate-brown);">•</span>
-                            Designed and developed dashboards that provided stakeholders with clear visibility into process runs and the status of daily operations.
-                        </li>
-                        <li style="margin-bottom: 0.5rem; position: relative; padding-left: 1.5rem;">
-                            <span style="position: absolute; left: 0; color: var(--chocolate-brown);">•</span>
-                            Designed and developed a user interface for process runs that enabled RPA controllers to trigger, monitor, and troubleshoot daily operations—reducing issue resolution time and mitigating potential risks.
-                        </li>
-                    </ul>
-                </div>
-                <div class="portfolio-card fade-in">
-                    <div class="portfolio-icon">
-                        🏥
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 text-chocolate text-center" style="font-family: 'Playfair Display', Georgia, serif; letter-spacing: -0.01em;">Healthcare Data Tools</h3>
-                    <ul class="text-chocolate-medium leading-relaxed text-left" style="font-weight: 400; letter-spacing: -0.005em; line-height: 1.7; list-style: none; padding-left: 0;">
-                        <li style="margin-bottom: 0.5rem; position: relative; padding-left: 1.5rem;">
-                            <span style="position: absolute; left: 0; color: var(--chocolate-brown);">•</span>
-                            Enhanced UI for secure data reporting applications.
-                        </li>
-                        <li style="margin-bottom: 0.5rem; position: relative; padding-left: 1.5rem;">
-                            <span style="position: absolute; left: 0; color: var(--chocolate-brown);">•</span>
-                            Designed cleaner interfaces and improved data accessibility.
-                        </li>
-                        <li style="margin-bottom: 0.5rem; position: relative; padding-left: 1.5rem;">
-                            <span style="position: absolute; left: 0; color: var(--chocolate-brown);">•</span>
-                            Developed dashboards supporting faster decision-making for research teams.
-                        </li>
-                        <li style="margin-bottom: 0.5rem; position: relative; padding-left: 1.5rem;">
-                            <span style="position: absolute; left: 0; color: var(--chocolate-brown);">•</span>
-                            Collected feedback from users and team members through surveys to improve system performance and user experience.
-                        </li>
-                    </ul>
-                </div>
-                <div class="portfolio-card fade-in">
-                    <div class="portfolio-icon">
-                        🛠️
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 text-chocolate text-center" style="font-family: 'Playfair Display', Georgia, serif; letter-spacing: -0.01em;">UX Innovation</h3>
-                    <ul class="text-chocolate-medium leading-relaxed text-left" style="font-weight: 400; letter-spacing: -0.005em; line-height: 1.7; list-style: none; padding-left: 0;">
-                        <li style="margin-bottom: 0.5rem; position: relative; padding-left: 1.5rem;">
-                            <span style="position: absolute; left: 0; color: var(--chocolate-brown);">•</span>
-                            Redesigned and optimized an internal financial web application, driving a <strong class="text-chocolate">40% boost in user experience and user satisfaction</strong>.
-                        </li>
-                        <li style="margin-bottom: 0.5rem; position: relative; padding-left: 1.5rem;">
-                            <span style="position: absolute; left: 0; color: var(--chocolate-brown);">•</span>
-                            Integrated reusable, easily updatable decision tree logic, enabling an interactive questionnaire that dynamically adapts to users' previous responses.
-                        </li>
-                        <li style="margin-bottom: 0.5rem; position: relative; padding-left: 1.5rem;">
-                            <span style="position: absolute; left: 0; color: var(--chocolate-brown);">•</span>
-                            Simplified complex workflows and guided users seamlessly to the right outcomes.
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+        <!-- Portfolio Blob -->
+        <div class="section-blob orbit-blob" data-blob="portfolio" data-position="1">
+            <div class="blob-title">Portfolio</div>
+            <div class="blob-content">
+                <button class="blob-close" aria-label="Close">×</button>
+                <div class="blob-content-card">
+                    <h2 class="section-title text-center" style="margin-bottom: 2rem;">Portfolio Highlights</h2>
 
+                    <!-- Sub-blob Grid View -->
+                    <div class="portfolio-grid" id="portfolioGrid">
+                        <!-- Dashboard -->
+                        <div class="portfolio-item" data-portfolio="dashboard">
+                            <div class="sub-blob">
+                                <div class="sub-blob-icon">📊</div>
+                                <div class="sub-blob-label">Dashboard</div>
+                            </div>
+                            <div class="portfolio-item-content">
+                                <h3 class="text-lg font-bold mb-2 text-chocolate" style="font-family: 'Playfair Display', Georgia, serif;">Dashboard Redesign</h3>
+                                <ul class="text-chocolate-medium text-left text-sm" style="font-weight: 400; line-height: 1.6; list-style: disc; padding-left: 1.2rem;">
+                                    <li>Redesigned and developed a responsive web dashboard to monitor application performance and escalations.</li>
+                                    <li>Improved usability with intuitive data visualizations and color-coded alerts.</li>
+                                    <li>Achieved an <strong>80% increase in issue tracking visibility</strong>.</li>
+                                </ul>
+                            </div>
+                        </div>
 
-    <!-- Process Section -->
-    <section id="process" class="section-card section-padding">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="section-title text-center">My Process</h2>
-            <div class="max-w-4xl mx-auto">
-                <div class="process-list">
-                    <div class="process-step fade-in">
-                        <div class="step-number">1</div>
-                        <h3 class="text-lg font-bold text-chocolate mb-2" style="font-family: 'Playfair Display', Georgia, serif;">Discover</h3>
-                        <p class="text-chocolate-medium leading-relaxed" style="font-weight: 400; letter-spacing: -0.005em; line-height: 1.7; font-size: 1rem;">Understand user needs and business goals through research, interviews, and data analysis</p>
-                    </div>
-                    <div class="process-step fade-in">
-                        <div class="step-number">2</div>
-                        <h3 class="text-lg font-bold text-chocolate mb-2" style="font-family: 'Playfair Display', Georgia, serif;">Design</h3>
-                        <p class="text-chocolate-medium leading-relaxed" style="font-weight: 400; letter-spacing: -0.005em; line-height: 1.7; font-size: 1rem;">Create wireframes, prototypes, and user flows that solve identified problems</p>
-                    </div>
-                    <div class="process-step fade-in">
-                        <div class="step-number">3</div>
-                        <h3 class="text-lg font-bold text-chocolate mb-2" style="font-family: 'Playfair Display', Georgia, serif;">Develop</h3>
-                        <p class="text-chocolate-medium leading-relaxed" style="font-weight: 400; letter-spacing: -0.005em; line-height: 1.7; font-size: 1rem;">Build functional interfaces with clean, maintainable code and attention to detail</p>
-                    </div>
-                    <div class="process-step fade-in">
-                        <div class="step-number">4</div>
-                        <h3 class="text-lg font-bold text-chocolate mb-2" style="font-family: 'Playfair Display', Georgia, serif;">Deliver</h3>
-                        <p class="text-chocolate-medium leading-relaxed" style="font-weight: 400; letter-spacing: -0.005em; line-height: 1.7; font-size: 1rem;">Test, refine, and deploy solutions optimized for real-world use and performance</p>
+                        <!-- RPA -->
+                        <div class="portfolio-item" data-portfolio="rpa">
+                            <div class="sub-blob">
+                                <div class="sub-blob-icon">🔄</div>
+                                <div class="sub-blob-label">RPA</div>
+                            </div>
+                            <div class="portfolio-item-content">
+                                <h3 class="text-lg font-bold mb-2 text-chocolate" style="font-family: 'Playfair Display', Georgia, serif;">RPA Workflow Migration</h3>
+                                <ul class="text-chocolate-medium text-left text-sm" style="font-weight: 400; line-height: 1.6; list-style: disc; padding-left: 1.2rem;">
+                                    <li>Designed and developed dashboards that provided stakeholders with clear visibility into process runs and the status of daily operations.</li>
+                                    <li>Designed and developed a user interface for process runs that enabled RPA controllers to trigger, monitor, and troubleshoot daily operations—reducing issue resolution time and mitigating potential risks.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Healthcare -->
+                        <div class="portfolio-item" data-portfolio="healthcare">
+                            <div class="sub-blob">
+                                <div class="sub-blob-icon">🏥</div>
+                                <div class="sub-blob-label">Healthcare</div>
+                            </div>
+                            <div class="portfolio-item-content">
+                                <h3 class="text-lg font-bold mb-2 text-chocolate" style="font-family: 'Playfair Display', Georgia, serif;">Healthcare Data Tools</h3>
+                                <ul class="text-chocolate-medium text-left text-sm" style="font-weight: 400; line-height: 1.6; list-style: disc; padding-left: 1.2rem;">
+                                    <li>Enhanced UI for secure data reporting applications.</li>
+                                    <li>Designed cleaner interfaces and improved data accessibility.</li>
+                                    <li>Developed dashboards supporting faster decision-making for research teams.</li>
+                                    <li>Collected feedback from users and team members through surveys to improve system performance and user experience.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- UX Innovation -->
+                        <div class="portfolio-item" data-portfolio="ux">
+                            <div class="sub-blob">
+                                <div class="sub-blob-icon">🛠️</div>
+                                <div class="sub-blob-label">UX</div>
+                            </div>
+                            <div class="portfolio-item-content">
+                                <h3 class="text-lg font-bold mb-2 text-chocolate" style="font-family: 'Playfair Display', Georgia, serif;">UX Innovation</h3>
+                                <ul class="text-chocolate-medium text-left text-sm" style="font-weight: 400; line-height: 1.6; list-style: disc; padding-left: 1.2rem;">
+                                    <li>Redesigned and optimized an internal financial web application, driving a <strong>40% boost in user experience and user satisfaction</strong>.</li>
+                                    <li>Integrated reusable, easily updatable decision tree logic, enabling an interactive questionnaire that dynamically adapts to users' previous responses.</li>
+                                    <li>Simplified complex workflows and guided users seamlessly to the right outcomes.</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
 
 
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="section-card section-padding">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="section-title text-center">Testimonials</h2>
-            <div class="max-w-4xl mx-auto">
-                <div class="testimonial-card fade-in">
-                    <blockquote class="text-xl italic text-chocolate-medium mb-6 text-center leading-relaxed" style="font-family: 'Caveat', cursive; font-weight: 600; letter-spacing: 0.01em; line-height: 1.6; font-size: 1.5rem;">
-                        Meera's expertise in requirements gathering and business analysis enabled the development of technically robust solutions that not only met our needs but were also intuitive and easy to use.
-                    </blockquote>
-                    <footer class="text-center">
-                        <div class="font-semibold text-chocolate text-lg"><a href="https://linkedin.com/in/ashwin-k-05330a33" target="_blank" style="text-decoration: none; color: inherit; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Ashwin Krishnamurthy</a></div>
-                        <div class="text-chocolate-light">Program Manager @ <a href="https://www.microsoft.com" target="_blank" style="text-decoration: none; color: inherit; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Microsoft</a></div>
-                    </footer>
+        <!-- Process Blob -->
+        <div class="section-blob orbit-blob" data-blob="process" data-position="2">
+            <div class="blob-title">My Process</div>
+            <div class="blob-content">
+                <button class="blob-close" aria-label="Close">×</button>
+                <div class="blob-content-card">
+                    <h2 class="section-title text-center" style="margin-bottom: 2rem;">My Process</h2>
+                    <div class="process-list">
+                        <div class="process-step">
+                            <div class="step-number">1</div>
+                            <h3 class="text-lg font-bold text-chocolate mb-2" style="font-family: 'Playfair Display', Georgia, serif;">Discover</h3>
+                            <p class="text-chocolate-medium leading-relaxed" style="font-weight: 400; letter-spacing: -0.005em; line-height: 1.7; font-size: 1rem;">Understand user needs and business goals through research, interviews, and data analysis</p>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">2</div>
+                            <h3 class="text-lg font-bold text-chocolate mb-2" style="font-family: 'Playfair Display', Georgia, serif;">Design</h3>
+                            <p class="text-chocolate-medium leading-relaxed" style="font-weight: 400; letter-spacing: -0.005em; line-height: 1.7; font-size: 1rem;">Create wireframes, prototypes, and user flows that solve identified problems</p>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">3</div>
+                            <h3 class="text-lg font-bold text-chocolate mb-2" style="font-family: 'Playfair Display', Georgia, serif;">Develop</h3>
+                            <p class="text-chocolate-medium leading-relaxed" style="font-weight: 400; letter-spacing: -0.005em; line-height: 1.7; font-size: 1rem;">Build functional interfaces with clean, maintainable code and attention to detail</p>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">4</div>
+                            <h3 class="text-lg font-bold text-chocolate mb-2" style="font-family: 'Playfair Display', Georgia, serif;">Deliver</h3>
+                            <p class="text-chocolate-medium leading-relaxed" style="font-weight: 400; letter-spacing: -0.005em; line-height: 1.7; font-size: 1rem;">Test, refine, and deploy solutions optimized for real-world use and performance</p>
+                        </div>
+                    </div>
                 </div>
-
-                <!-- Madhavee Inamdar's testimonial - Hidden for later use
-                <div class="testimonial-card fade-in">
-                    <blockquote class="text-xl italic text-chocolate-medium mb-6 text-center leading-relaxed" style="font-family: 'Playfair Display', Georgia, serif; font-weight: 400; letter-spacing: -0.01em; line-height: 1.6;">
-                        From the very first brainstorming session to the final launch, Meera didn't just build a website, she crafted a digital space that feels both inspiring and accessible. Her creativity, technical expertise, and attention to detail brought our vision to life in ways we hadn't imagined. We are beyond grateful for her dedication and the beautiful result she delivered. Every design choice, from the colour palette to the typography was intentional, inclusive, and aligned with our ethos. The site's seamless navigation and robust accessibility features ensure that no visitor feels left out, regardless of ability or background. If you're searching for a designer who can transform your vision into a meaningful digital experience, Meera is not just the right choice but someone who can turn vision into reality with grace and brilliance with her professionalism, artistry and relentless pursuit.
-                    </blockquote>
-                    <footer class="text-center">
-                        <div class="font-semibold text-chocolate text-lg"><a href="https://linkedin.com/in/madhavee-inamdar-0220b9a" target="_blank" style="text-decoration: none; color: inherit; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Madhavee Inamdar</a></div>
-                        <div class="text-chocolate-light">Diversity, Equity & Inclusion Strategist</div>
-                    </footer>
-                </div>
-                -->
             </div>
         </div>
-    </section>
+
+
+        <!-- Testimonials Blob -->
+        <div class="section-blob orbit-blob" data-blob="testimonials" data-position="3">
+            <div class="blob-title">Testimonials</div>
+            <div class="blob-content">
+                <button class="blob-close" aria-label="Close">×</button>
+                <div class="blob-content-card">
+                    <h2 class="section-title text-center" style="margin-bottom: 2rem;">Testimonials</h2>
+
+                    <div class="testimonial-card" style="padding-top: 3rem; padding-bottom: 3rem;">
+                        <blockquote class="text-xl italic text-chocolate-medium mb-6 text-center leading-relaxed" style="font-family: 'Caveat', cursive; font-weight: 600; letter-spacing: 0.01em; line-height: 1.6; font-size: 1.5rem;">
+                            Meera's expertise in requirements gathering and business analysis enabled the development of technically robust solutions that not only met our needs but were also intuitive and easy to use.
+                        </blockquote>
+                        <footer class="text-center">
+                            <div class="font-semibold text-chocolate text-lg"><a href="https://linkedin.com/in/ashwin-k-05330a33" target="_blank" style="text-decoration: none; color: inherit; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Ashwin Krishnamurthy</a></div>
+                            <div class="text-chocolate-light">Program Manager @ <a href="https://www.microsoft.com" target="_blank" style="text-decoration: none; color: inherit; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Microsoft</a></div>
+                        </footer>
+                    </div>
+
+                    <div class="testimonial-card" style="margin-top: 2rem;">
+                        <blockquote class="text-xl italic text-chocolate-medium mb-6 text-center leading-relaxed" style="font-family: 'Caveat', cursive; font-weight: 600; letter-spacing: 0.01em; line-height: 1.6; font-size: 1.5rem;">
+                            Meera's Transformative Work on <a href="https://inclusiveaifoundation.com/" target="_blank" style="text-decoration: none; color: inherit; transition: opacity 0.3s ease; border-bottom: 1px dotted currentColor;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">www.inclusiveaifoundation.com</a><br><br>
+                            From the very first brainstorming session to the final launch, Meera didn't just build a website, she crafted a digital space that feels both inspiring and accessible. Her creativity, technical expertise, and attention to detail brought our vision to life in ways we hadn't imagined.<br><br>
+                            We are beyond grateful for her dedication and the beautiful result she delivered.<br><br>
+                            Every design choice, from the colour palette to the typography was intentional, inclusive, and aligned with our ethos. The site's seamless navigation and robust accessibility features ensure that no visitor feels left out, regardless of ability or background.<br><br>
+                            If you're searching for a designer who can transform your vision into a meaningful digital experience, Meera is not just the right choice but someone who can turn vision into reality with grace and brilliance with her professionalism, artistry and relentless pursuit.
+                        </blockquote>
+                        <footer class="text-center">
+                            <div class="font-semibold text-chocolate text-lg"><a href="https://linkedin.com/in/madhavee-inamdar-0220b9a" target="_blank" style="text-decoration: none; color: inherit; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Madhavee Inamdar</a></div>
+                            <div class="text-chocolate-light">Diversity, Equity & Inclusion Strategist</div>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
 
-    <!-- Former Hero Content -->
-    <section class="section-card section-padding">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="section-title text-center" style="font-family: 'Playfair Display', Georgia, serif; letter-spacing: -0.02em;">
-                Designing Experiences That Matter
-            </h2>
-            <div class="max-w-4xl mx-auto">
-                <div class="glass-card p-8 text-center">
+        <!-- Contact Blob -->
+        <div class="section-blob orbit-blob" data-blob="contact" data-position="4">
+            <div class="blob-title">Contact</div>
+            <div class="blob-content">
+                <button class="blob-close" aria-label="Close">×</button>
+                <div class="blob-content-card">
+                    <h2 class="section-title text-center" style="margin-bottom: 2rem; font-family: 'Playfair Display', Georgia, serif; letter-spacing: -0.02em;">
+                        Designing Experiences That Matter
+                    </h2>
                     <p class="mb-8 text-chocolate-medium leading-relaxed" style="font-weight: 400; letter-spacing: -0.005em; font-size: 1rem;">
                         I am Meera Madhavan, ready to collaborate on your next project. Let's create digital experiences that are functional, and reliable.
                         <br><br>- Meera
@@ -775,7 +1501,8 @@
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+    <!-- End Blob Container -->
 
     <!-- Footer -->
     <footer class="bg-gray-900 text-white text-center py-8">
@@ -979,6 +1706,135 @@
             if (loadTime > 3000) {
                 console.info(`Page loaded in ${loadTime.toFixed(2)}ms - consider further optimization`);
             }
+        });
+
+        // Blob Expand/Collapse Functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const blobs = document.querySelectorAll('.section-blob');
+            const backdrop = document.getElementById('blobBackdrop');
+            const dialContainer = document.querySelector('.central-dial-container');
+            let expandedBlob = null;
+
+            // Function to expand a blob
+            function expandBlob(blob) {
+                if (expandedBlob && expandedBlob !== blob) {
+                    collapseBlob(expandedBlob);
+                }
+
+                blob.classList.add('expanded');
+                backdrop.classList.add('active');
+                expandedBlob = blob;
+                document.body.style.overflow = 'hidden';
+
+                // Hide other blobs when one expands
+                blobs.forEach(b => {
+                    if (b !== blob) {
+                        b.style.opacity = '0';
+                        b.style.pointerEvents = 'none';
+                    }
+                });
+            }
+
+            // Function to collapse a blob
+            function collapseBlob(blob) {
+                blob.classList.remove('expanded');
+                backdrop.classList.remove('active');
+                expandedBlob = null;
+                document.body.style.overflow = '';
+
+                // Show all blobs again
+                blobs.forEach(b => {
+                    b.style.opacity = '1';
+                    b.style.pointerEvents = 'auto';
+                });
+            }
+
+            // Add click event to each blob
+            blobs.forEach(blob => {
+                const blobTitle = blob.querySelector('.blob-title');
+                const closeButton = blob.querySelector('.blob-close');
+
+                // Click on title to expand
+                if (blobTitle) {
+                    blobTitle.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        if (!blob.classList.contains('expanded')) {
+                            expandBlob(blob);
+                        }
+                    });
+                }
+
+                // Click on blob (when not expanded) to expand
+                blob.addEventListener('click', (e) => {
+                    if (!blob.classList.contains('expanded') && e.target === blob) {
+                        expandBlob(blob);
+                    }
+                });
+
+                // Click on close button to collapse
+                if (closeButton) {
+                    closeButton.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        collapseBlob(blob);
+                    });
+                }
+            });
+
+            // Click on backdrop to collapse
+            backdrop.addEventListener('click', () => {
+                if (expandedBlob) {
+                    collapseBlob(expandedBlob);
+                }
+            });
+
+            // Escape key to collapse
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && expandedBlob) {
+                    collapseBlob(expandedBlob);
+                }
+            });
+
+            // Update Highlights button to scroll to blob container
+            const highlightsBtn = document.querySelector('a[href="#portfolio"]');
+            if (highlightsBtn) {
+                highlightsBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const blobContainer = document.querySelector('.blob-container');
+                    if (blobContainer) {
+                        blobContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            }
+        });
+
+        // Portfolio Inline Expansion
+        document.addEventListener('DOMContentLoaded', () => {
+            const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+            portfolioItems.forEach(item => {
+                const subBlob = item.querySelector('.sub-blob');
+
+                subBlob.addEventListener('click', (e) => {
+                    e.stopPropagation();
+
+                    // Toggle this item
+                    const isExpanded = item.classList.contains('expanded');
+
+                    // Collapse all other items
+                    portfolioItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('expanded');
+                        }
+                    });
+
+                    // Toggle current item
+                    if (isExpanded) {
+                        item.classList.remove('expanded');
+                    } else {
+                        item.classList.add('expanded');
+                    }
+                });
+            });
         });
     </script>              
 </body>
