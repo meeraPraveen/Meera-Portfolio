@@ -728,7 +728,7 @@
             padding: 4rem 3rem;
             opacity: 0;
             visibility: hidden;
-            overflow: hidden;
+            overflow: visible;
             transition: opacity 0.3s ease, visibility 0.3s ease;
             background: transparent;
             border-radius: inherit;
@@ -736,7 +736,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
         }
 
         /* Rectangular card within circular blob */
@@ -746,12 +746,14 @@
             background: transparent;
             border-radius: 20px;
             padding: 2rem;
-            overflow-x: auto;
+            overflow-x: visible;
             overflow-y: auto;
             scrollbar-width: none; /* Firefox */
             -ms-overflow-style: none; /* IE and Edge */
             display: flex;
             flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         .blob-content-card::-webkit-scrollbar {
@@ -1025,104 +1027,299 @@
             }
         }
 
-        /* Portfolio grid layout */
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 3rem;
-            row-gap: 4rem;
-            padding: 2rem 0;
-        }
-
-        @media (max-width: 768px) {
-            .portfolio-grid {
-                grid-template-columns: 1fr;
-                gap: 2.5rem;
-                row-gap: 3rem;
-            }
-        }
-
-        /* Portfolio item container */
-        .portfolio-item {
+        /* Portfolio semicircle container */
+        .portfolio-semicircle-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            height: 450px;
+            margin: 2rem auto 0 auto;
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
+            align-items: flex-end;
+            justify-content: center;
+            z-index: 1;
         }
 
-        /* Sub-blob styles - glossy color background matching LinkedIn button */
-        .sub-blob {
-            width: 100px;
-            height: 100px;
+        /* Portfolio grid layout - semicircular positioning */
+        .portfolio-grid {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Portfolio item - small circular blob */
+        .portfolio-item {
+            position: absolute;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
-            background: linear-gradient(135deg, rgba(224, 122, 95, 0.6) 0%, rgba(244, 165, 131, 0.5) 50%, rgba(218, 165, 32, 0.4) 100%);
+            background: linear-gradient(135deg, rgba(224, 122, 95, 0.8) 0%, rgba(244, 165, 131, 0.7) 50%, rgba(218, 165, 32, 0.6) 100%);
             backdrop-filter: blur(15px) saturate(150%);
             -webkit-backdrop-filter: blur(15px) saturate(150%);
-            border: 2px solid rgba(218, 165, 32, 0.6);
+            border: 3px solid rgba(218, 165, 32, 0.8);
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow:
+                0 10px 25px rgba(224, 122, 95, 0.4),
+                0 5px 15px rgba(0, 0, 0, 0.2),
+                inset 0 2px 4px rgba(255, 255, 255, 0.6),
+                inset 0 -2px 4px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: scale(0.5);
+            bottom: 0;
+            left: 50%;
+            z-index: 10;
+        }
+
+        .portfolio-item::before {
+            content: '';
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            width: 50%;
+            height: 50%;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.3) 40%, transparent 70%);
+            opacity: 0.7;
+            pointer-events: none;
+            border-radius: 50%;
+            filter: blur(10px);
+        }
+
+        /* Random positioning - set dynamically via JavaScript */
+        .portfolio-item[data-position="0"],
+        .portfolio-item[data-position="1"],
+        .portfolio-item[data-position="2"],
+        .portfolio-item[data-position="3"],
+        .portfolio-item[data-position="4"] {
+            transform: translateX(-50%) translate(0px, 0px) scale(0.5);
+        }
+
+        /* Visible state with staggered animation */
+        .portfolio-item.visible {
+            opacity: 1;
+            transform: translateX(-50%) translate(var(--random-x), var(--random-y)) scale(1);
+        }
+
+        .portfolio-item.visible[data-position="0"] {
+            transition-delay: 0s;
+        }
+
+        .portfolio-item.visible[data-position="1"] {
+            transition-delay: 0.1s;
+        }
+
+        .portfolio-item.visible[data-position="2"] {
+            transition-delay: 0.2s;
+        }
+
+        .portfolio-item.visible[data-position="3"] {
+            transition-delay: 0.3s;
+        }
+
+        .portfolio-item.visible[data-position="4"] {
+            transition-delay: 0.4s;
+        }
+
+        .portfolio-item:hover:not(.expanded) {
+            box-shadow:
+                0 15px 35px rgba(224, 122, 95, 0.5),
+                0 8px 20px rgba(0, 0, 0, 0.25),
+                inset 0 1px 3px rgba(255, 255, 255, 0.6),
+                inset 0 -1px 3px rgba(0, 0, 0, 0.15);
+            background: linear-gradient(135deg, rgba(224, 122, 95, 0.9) 0%, rgba(244, 165, 131, 0.8) 50%, rgba(218, 165, 32, 0.7) 100%);
+            border-color: rgba(218, 165, 32, 1);
+            z-index: 20;
+        }
+
+        /* Magnetic effect - other blobs move toward hovered blob */
+        .portfolio-item.magnetic-attract {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Portfolio card header - circular blob title */
+        .portfolio-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        .portfolio-title-wrapper {
+            padding: 1rem;
+        }
+
+        .portfolio-title {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin: 0;
+            letter-spacing: -0.01em;
+            line-height: 1.3;
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Portfolio item content - hidden in blob state */
+        .portfolio-item-content {
+            display: none;
+        }
+
+        /* Expanded state - circular card */
+        .portfolio-item.expanded {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) !important;
+            width: 80vw;
+            height: 80vw;
+            max-width: 700px;
+            max-height: 700px;
+            min-height: 500px;
+            border-radius: 50%;
+            z-index: 150;
+            overflow-y: auto;
+            padding: 3rem;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE and Edge */
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow:
-                0 8px 20px rgba(224, 122, 95, 0.3),
-                0 4px 10px rgba(0, 0, 0, 0.15),
-                inset 0 1px 2px rgba(255, 255, 255, 0.5),
-                inset 0 -1px 2px rgba(0, 0, 0, 0.1);
-            position: relative;
-            transform-style: preserve-3d;
-            overflow: hidden;
         }
 
-        .sub-blob::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, transparent 60%);
-            opacity: 0.6;
-            pointer-events: none;
+        .portfolio-item.expanded::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
         }
 
-        .sub-blob:hover {
-            box-shadow:
-                0 12px 30px rgba(224, 122, 95, 0.4),
-                0 6px 15px rgba(0, 0, 0, 0.2),
-                inset 0 1px 3px rgba(255, 255, 255, 0.6),
-                inset 0 -1px 3px rgba(0, 0, 0, 0.15);
-            background: linear-gradient(135deg, rgba(224, 122, 95, 0.7) 0%, rgba(244, 165, 131, 0.6) 50%, rgba(218, 165, 32, 0.5) 100%);
-            border-color: rgba(218, 165, 32, 0.9);
-        }
-
-        .sub-blob-icon {
-            font-size: 1.75rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .sub-blob-label {
-            font-size: 0.7rem;
-            font-weight: 600;
-            text-align: center;
-            color: var(--text-dark);
-            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
-        }
-
-        /* Portfolio item content - collapsible */
-        .portfolio-item-content {
-            max-height: 0;
-            overflow: hidden;
+        .portfolio-item.expanded .portfolio-card-header {
             opacity: 0;
-            transition: max-height 0.4s ease, opacity 0.3s ease, margin 0.3s ease;
-            margin-top: 0;
+            height: 0;
+            overflow: hidden;
+        }
+
+        .portfolio-item.expanded .portfolio-title {
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
         }
 
         .portfolio-item.expanded .portfolio-item-content {
-            max-height: 500px;
+            display: block;
             opacity: 1;
-            margin-top: 0.5rem;
+        }
+
+        .portfolio-item-content h3 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin: 0 0 1.5rem 0;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .portfolio-item.expanded .portfolio-item-content {
+            width: 100%;
+            max-width: 75%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        .portfolio-item.expanded .portfolio-item-content h3 {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .portfolio-item.expanded .portfolio-item-content ul {
+            text-align: left;
+            display: inline-block;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        /* Close button for expanded card */
+        .portfolio-close-btn {
+            position: absolute;
+            top: 12%;
+            right: 12%;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: transparent;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            border: none;
+            color: var(--text-dark);
+            font-size: 2rem;
+            font-weight: normal;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 9999;
+            box-shadow: none;
+            line-height: 1;
+        }
+
+        .portfolio-item.expanded .portfolio-close-btn {
+            display: flex !important;
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .portfolio-close-btn:hover {
+            transform: rotate(90deg) scale(1.2);
+            color: var(--chocolate-dark);
+        }
+
+        @media (max-width: 768px) {
+            .portfolio-semicircle-container {
+                height: 350px;
+            }
+
+            .portfolio-item {
+                width: 100px;
+                height: 100px;
+            }
+
+            .portfolio-title {
+                font-size: 0.85rem;
+            }
+
+            .portfolio-item.expanded {
+                width: 90vw;
+                height: 90vw;
+                max-width: 90vw;
+                max-height: 90vh;
+                min-height: 400px;
+                padding: 3rem 2rem;
+            }
+
+            .portfolio-item.expanded .portfolio-title,
+            .portfolio-item-content h3 {
+                font-size: 1.5rem;
+            }
+
+            .portfolio-item.expanded .portfolio-item-content {
+                max-width: 85%;
+            }
         }
 
         /* Circular dial navigation */
@@ -1365,20 +1562,22 @@
             <div class="blob-title">Portfolio</div>
             <div class="blob-content">
                 <button class="blob-close" aria-label="Close">×</button>
-                <div class="blob-content-card">
-                    <h2 class="section-title text-center" style="margin-bottom: 2rem;">Portfolio Highlights</h2>
+                <h2 class="section-title text-center" style="margin-bottom: 2rem; position: relative; z-index: 2;">Portfolio Highlights</h2>
 
-                    <!-- Sub-blob Grid View -->
+                <!-- Semicircular Blob Layout -->
+                <div class="portfolio-semicircle-container">
                     <div class="portfolio-grid" id="portfolioGrid">
                         <!-- Dashboard -->
-                        <div class="portfolio-item" data-portfolio="dashboard">
-                            <div class="sub-blob">
-                                <div class="sub-blob-icon">📊</div>
-                                <div class="sub-blob-label">Dashboard</div>
+                        <div class="portfolio-item" data-portfolio="dashboard" data-position="0">
+                            <button class="portfolio-close-btn" aria-label="Close">×</button>
+                            <div class="portfolio-card-header">
+                                <div class="portfolio-title-wrapper">
+                                    <h3 class="portfolio-title">Dashboard<br>Redesign</h3>
+                                </div>
                             </div>
                             <div class="portfolio-item-content">
-                                <h3 class="text-lg font-bold mb-2 text-chocolate" style="font-family: 'Playfair Display', Georgia, serif;">Dashboard Redesign</h3>
-                                <ul class="text-chocolate-medium text-left text-sm" style="font-weight: 400; line-height: 1.6; list-style: disc; padding-left: 1.2rem;">
+                                <h3>Dashboard Redesign</h3>
+                                <ul class="text-chocolate-medium text-left" style="font-weight: 400; line-height: 1.7; list-style: disc; padding-left: 1.2rem; font-size: 1rem;">
                                     <li>Redesigned and developed a responsive web dashboard to monitor application performance and escalations.</li>
                                     <li>Improved usability with intuitive data visualizations and color-coded alerts.</li>
                                     <li>Achieved an <strong>80% increase in issue tracking visibility</strong>.</li>
@@ -1387,14 +1586,16 @@
                         </div>
 
                         <!-- RPA -->
-                        <div class="portfolio-item" data-portfolio="rpa">
-                            <div class="sub-blob">
-                                <div class="sub-blob-icon">🔄</div>
-                                <div class="sub-blob-label">RPA</div>
+                        <div class="portfolio-item" data-portfolio="rpa" data-position="1">
+                            <button class="portfolio-close-btn" aria-label="Close">×</button>
+                            <div class="portfolio-card-header">
+                                <div class="portfolio-title-wrapper">
+                                    <h3 class="portfolio-title">RPA<br>Workflow</h3>
+                                </div>
                             </div>
                             <div class="portfolio-item-content">
-                                <h3 class="text-lg font-bold mb-2 text-chocolate" style="font-family: 'Playfair Display', Georgia, serif;">RPA Workflow Migration</h3>
-                                <ul class="text-chocolate-medium text-left text-sm" style="font-weight: 400; line-height: 1.6; list-style: disc; padding-left: 1.2rem;">
+                                <h3>RPA Workflow Migration</h3>
+                                <ul class="text-chocolate-medium text-left" style="font-weight: 400; line-height: 1.7; list-style: disc; padding-left: 1.2rem; font-size: 1rem;">
                                     <li>Designed and developed dashboards that provided stakeholders with clear visibility into process runs and the status of daily operations.</li>
                                     <li>Designed and developed a user interface for process runs that enabled RPA controllers to trigger, monitor, and troubleshoot daily operations—reducing issue resolution time and mitigating potential risks.</li>
                                 </ul>
@@ -1402,14 +1603,16 @@
                         </div>
 
                         <!-- Healthcare -->
-                        <div class="portfolio-item" data-portfolio="healthcare">
-                            <div class="sub-blob">
-                                <div class="sub-blob-icon">🏥</div>
-                                <div class="sub-blob-label">Healthcare</div>
+                        <div class="portfolio-item" data-portfolio="healthcare" data-position="2">
+                            <button class="portfolio-close-btn" aria-label="Close">×</button>
+                            <div class="portfolio-card-header">
+                                <div class="portfolio-title-wrapper">
+                                    <h3 class="portfolio-title">Healthcare<br>Tools</h3>
+                                </div>
                             </div>
                             <div class="portfolio-item-content">
-                                <h3 class="text-lg font-bold mb-2 text-chocolate" style="font-family: 'Playfair Display', Georgia, serif;">Healthcare Data Tools</h3>
-                                <ul class="text-chocolate-medium text-left text-sm" style="font-weight: 400; line-height: 1.6; list-style: disc; padding-left: 1.2rem;">
+                                <h3>Healthcare Data Tools</h3>
+                                <ul class="text-chocolate-medium text-left" style="font-weight: 400; line-height: 1.7; list-style: disc; padding-left: 1.2rem; font-size: 1rem;">
                                     <li>Enhanced UI for secure data reporting applications.</li>
                                     <li>Designed cleaner interfaces and improved data accessibility.</li>
                                     <li>Developed dashboards supporting faster decision-making for research teams.</li>
@@ -1419,17 +1622,37 @@
                         </div>
 
                         <!-- UX Innovation -->
-                        <div class="portfolio-item" data-portfolio="ux">
-                            <div class="sub-blob">
-                                <div class="sub-blob-icon">🛠️</div>
-                                <div class="sub-blob-label">UX</div>
+                        <div class="portfolio-item" data-portfolio="ux" data-position="3">
+                            <button class="portfolio-close-btn" aria-label="Close">×</button>
+                            <div class="portfolio-card-header">
+                                <div class="portfolio-title-wrapper">
+                                    <h3 class="portfolio-title">UX<br>Innovation</h3>
+                                </div>
                             </div>
                             <div class="portfolio-item-content">
-                                <h3 class="text-lg font-bold mb-2 text-chocolate" style="font-family: 'Playfair Display', Georgia, serif;">UX Innovation</h3>
-                                <ul class="text-chocolate-medium text-left text-sm" style="font-weight: 400; line-height: 1.6; list-style: disc; padding-left: 1.2rem;">
+                                <h3>UX Innovation</h3>
+                                <ul class="text-chocolate-medium text-left" style="font-weight: 400; line-height: 1.7; list-style: disc; padding-left: 1.2rem; font-size: 1rem;">
                                     <li>Redesigned and optimized an internal financial web application, driving a <strong>40% boost in user experience and user satisfaction</strong>.</li>
                                     <li>Integrated reusable, easily updatable decision tree logic, enabling an interactive questionnaire that dynamically adapts to users' previous responses.</li>
                                     <li>Simplified complex workflows and guided users seamlessly to the right outcomes.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Website Development -->
+                        <div class="portfolio-item" data-portfolio="website" data-position="4">
+                            <button class="portfolio-close-btn" aria-label="Close">×</button>
+                            <div class="portfolio-card-header">
+                                <div class="portfolio-title-wrapper">
+                                    <h3 class="portfolio-title">Website<br>Development</h3>
+                                </div>
+                            </div>
+                            <div class="portfolio-item-content">
+                                <h3>Website Development</h3>
+                                <ul class="text-chocolate-medium text-left" style="font-weight: 400; line-height: 1.7; list-style: disc; padding-left: 1.2rem; font-size: 1rem;">
+                                    <li>Developed and designed a professional website for the Inclusive AI Foundation.</li>
+                                    <li>Visit: <a href="https://inclusiveaifoundation.com/" target="_blank" rel="noopener noreferrer" style="color: var(--chocolate-dark); text-decoration: underline; font-weight: 600;">inclusiveaifoundation.com</a></li>
+                                    <li>Created a clean, accessible, and responsive web presence that effectively communicates the foundation's mission and initiatives.</li>
                                 </ul>
                             </div>
                         </div>
@@ -1523,7 +1746,7 @@
                         I am Meera Madhavan, ready to collaborate on your next project. Let's create digital experiences that are functional, and reliable.
                         <br><br>- Meera
                     </p>
-                    <div class="flex flex-col sm:flex-row justify-center items-center gap-6" style="margin-top: 1rem;">
+                    <div class="flex flex-col sm:flex-row justify-center items-center gap-6" style="margin-top: 1rem; padding: 1rem 0;">
                         <a href="https://linkedin.com/in/madhavanmeera" target="_blank" class="contact-link">
                             <span class="font-medium">LinkedIn</span>
                         </a>
@@ -1845,33 +2068,210 @@
             }
         });
 
-        // Portfolio Inline Expansion
+        // Portfolio Blob Semicircle - Scroll visibility & expansion
         document.addEventListener('DOMContentLoaded', () => {
             const portfolioItems = document.querySelectorAll('.portfolio-item');
+            const portfolioBlob = document.querySelector('[data-blob="portfolio"]');
 
+            // Generate random positions for blobs
+            const isMobile = window.innerWidth <= 768;
+            const containerWidth = isMobile ? 360 : 700;
+            const containerHeight = isMobile ? 350 : 450;
+            const blobSize = isMobile ? 100 : 120;
+            const padding = isMobile ? 60 : 80; // Increased padding from edges
+            const minDistance = isMobile ? 140 : 180; // Minimum distance between blob centers
+
+            const blobPositions = {};
+
+            // Function to generate random position
+            function generateRandomPosition(existingPositions) {
+                let attempts = 0;
+                let position;
+
+                while (attempts < 200) {
+                    // Random x between -containerWidth/2 + padding and containerWidth/2 - padding
+                    const maxX = (containerWidth / 2) - padding;
+                    const minX = -(containerWidth / 2) + padding;
+                    const x = Math.random() * (maxX - minX) + minX;
+
+                    // Random y between -containerHeight + padding and -padding (negative to place above bottom)
+                    const maxY = -padding;
+                    const minY = -(containerHeight - padding);
+                    const y = Math.random() * (maxY - minY) + minY;
+
+                    position = { x: Math.round(x), y: Math.round(y) };
+
+                    // Check if position is far enough from existing blobs
+                    let tooClose = false;
+                    for (let existingPos of existingPositions) {
+                        const distance = Math.sqrt(
+                            Math.pow(position.x - existingPos.x, 2) +
+                            Math.pow(position.y - existingPos.y, 2)
+                        );
+                        if (distance < minDistance) {
+                            tooClose = true;
+                            break;
+                        }
+                    }
+
+                    if (!tooClose) {
+                        return position;
+                    }
+
+                    attempts++;
+                }
+
+                // Fallback to a safe position if we can't find a good one
+                const fallbackIndex = existingPositions.length;
+                const angle = (fallbackIndex * Math.PI * 2) / 5;
+                const radius = isMobile ? 120 : 160;
+                return {
+                    x: Math.round(Math.cos(angle) * radius),
+                    y: Math.round(Math.sin(angle) * radius - 100)
+                };
+            }
+
+            // Generate positions for all blobs
+            const existingPositions = [];
+            for (let i = 0; i < 5; i++) {
+                const pos = generateRandomPosition(existingPositions);
+                blobPositions[i] = pos;
+                existingPositions.push(pos);
+            }
+
+            // Apply random positions to blobs via CSS variables
+            portfolioItems.forEach((item, index) => {
+                const position = parseInt(item.getAttribute('data-position'));
+                item.style.setProperty('--random-x', `${blobPositions[position].x}px`);
+                item.style.setProperty('--random-y', `${blobPositions[position].y}px`);
+            });
+
+            // Show portfolio sub-blobs when portfolio blob is opened
+            if (portfolioBlob) {
+                const portfolioBlobTitle = portfolioBlob.querySelector('.blob-title');
+
+                portfolioBlobTitle.addEventListener('click', () => {
+                    // Delay to allow blob expansion animation
+                    setTimeout(() => {
+                        if (portfolioBlob.classList.contains('expanded')) {
+                            portfolioItems.forEach((item, index) => {
+                                setTimeout(() => {
+                                    item.classList.add('visible');
+                                }, index * 100);
+                            });
+                        }
+                    }, 300);
+                });
+            }
+
+            // Magnetic hover effect - other blobs move toward hovered blob
+            portfolioItems.forEach((item, index) => {
+                const position = parseInt(item.getAttribute('data-position'));
+
+                // Hover to attract other blobs
+                item.addEventListener('mouseenter', () => {
+                    if (item.classList.contains('expanded') || !item.classList.contains('visible')) return;
+
+                    const hoveredX = blobPositions[position].x;
+                    const hoveredY = blobPositions[position].y;
+
+                    portfolioItems.forEach((otherItem, otherIndex) => {
+                        if (otherItem === item || !otherItem.classList.contains('visible')) return;
+
+                        const otherPosition = parseInt(otherItem.getAttribute('data-position'));
+                        const baseX = blobPositions[otherPosition].x;
+                        const baseY = blobPositions[otherPosition].y;
+
+                        // Calculate direction and distance to move (50% closer)
+                        const diffX = (hoveredX - baseX) * 0.5;
+                        const diffY = (hoveredY - baseY) * 0.5;
+                        const newX = baseX + diffX;
+                        const newY = baseY + diffY;
+
+                        otherItem.classList.add('magnetic-attract');
+                        otherItem.style.transform = `translateX(-50%) translate(${newX}px, ${newY}px) scale(1)`;
+                    });
+                });
+
+                // Mouse leave - reset positions
+                item.addEventListener('mouseleave', () => {
+                    if (!item.classList.contains('visible')) return;
+
+                    portfolioItems.forEach((otherItem) => {
+                        if (otherItem === item || !otherItem.classList.contains('visible')) return;
+
+                        const otherPosition = parseInt(otherItem.getAttribute('data-position'));
+                        const baseX = blobPositions[otherPosition].x;
+                        const baseY = blobPositions[otherPosition].y;
+
+                        otherItem.classList.remove('magnetic-attract');
+                        otherItem.style.transform = `translateX(-50%) translate(${baseX}px, ${baseY}px) scale(1)`;
+                    });
+                });
+            });
+
+            // Click to expand blobs into rectangular cards
             portfolioItems.forEach(item => {
-                const subBlob = item.querySelector('.sub-blob');
+                const closeBtn = item.querySelector('.portfolio-close-btn');
 
-                subBlob.addEventListener('click', (e) => {
+                // Click on blob to expand
+                item.addEventListener('click', (e) => {
+                    // Prevent expansion if clicking close button
+                    if (e.target.closest('.portfolio-close-btn')) {
+                        return;
+                    }
+
                     e.stopPropagation();
 
-                    // Toggle this item
                     const isExpanded = item.classList.contains('expanded');
 
-                    // Collapse all other items
-                    portfolioItems.forEach(otherItem => {
-                        if (otherItem !== item) {
+                    if (!isExpanded) {
+                        // Collapse all other items
+                        portfolioItems.forEach(otherItem => {
                             otherItem.classList.remove('expanded');
-                        }
-                    });
+                        });
 
-                    // Toggle current item
-                    if (isExpanded) {
-                        item.classList.remove('expanded');
-                    } else {
+                        // Expand this item
                         item.classList.add('expanded');
+                        // Don't activate backdrop to keep outer blob background consistent
+                        // portfolioBackdrop.classList.add('active');
+                        // Don't prevent body scroll since we're inside a blob
+                        // document.body.style.overflow = 'hidden';
                     }
                 });
+
+                // Close button click
+                if (closeBtn) {
+                    closeBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        item.classList.remove('expanded');
+                        // portfolioBackdrop.classList.remove('active');
+                        // document.body.style.overflow = '';
+                    });
+                }
+            });
+
+            // Click backdrop to close (disabled to prevent darkening)
+            // if (portfolioBackdrop) {
+            //     portfolioBackdrop.addEventListener('click', () => {
+            //         portfolioItems.forEach(item => {
+            //             item.classList.remove('expanded');
+            //         });
+            //         portfolioBackdrop.classList.remove('active');
+            //         document.body.style.overflow = '';
+            //     });
+            // }
+
+            // Escape key to close
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    const expandedItem = document.querySelector('.portfolio-item.expanded');
+                    if (expandedItem) {
+                        expandedItem.classList.remove('expanded');
+                        // portfolioBackdrop.classList.remove('active');
+                        // document.body.style.overflow = '';
+                    }
+                }
             });
         });
     </script>              
