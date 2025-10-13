@@ -1031,8 +1031,8 @@
         .portfolio-semicircle-container {
             position: relative;
             width: 100%;
-            max-width: 700px;
-            height: 450px;
+            max-width: 900px;
+            height: 550px;
             margin: 2rem auto 0 auto;
             display: flex;
             align-items: flex-end;
@@ -2075,11 +2075,11 @@
 
             // Generate random positions for blobs
             const isMobile = window.innerWidth <= 768;
-            const containerWidth = isMobile ? 360 : 700;
-            const containerHeight = isMobile ? 350 : 450;
+            const containerWidth = isMobile ? 360 : 900;
+            const containerHeight = isMobile ? 350 : 550;
             const blobSize = isMobile ? 100 : 120;
-            const padding = isMobile ? 60 : 80; // Increased padding from edges
-            const minDistance = isMobile ? 140 : 180; // Minimum distance between blob centers
+            const padding = isMobile ? 70 : 120; // Increased padding from edges to prevent cutoff
+            const minDistance = isMobile ? 160 : 220; // Minimum distance between blob centers - increased for 5 blobs
 
             const blobPositions = {};
 
@@ -2088,7 +2088,7 @@
                 let attempts = 0;
                 let position;
 
-                while (attempts < 200) {
+                while (attempts < 300) {
                     // Random x between -containerWidth/2 + padding and containerWidth/2 - padding
                     const maxX = (containerWidth / 2) - padding;
                     const minX = -(containerWidth / 2) + padding;
@@ -2122,12 +2122,13 @@
                 }
 
                 // Fallback to a safe position if we can't find a good one
+                // Arrange in a pentagon pattern with guaranteed spacing
                 const fallbackIndex = existingPositions.length;
-                const angle = (fallbackIndex * Math.PI * 2) / 5;
-                const radius = isMobile ? 120 : 160;
+                const angle = (fallbackIndex * Math.PI * 2) / 5 - Math.PI / 2; // Start from top
+                const radius = isMobile ? 100 : 180;
                 return {
                     x: Math.round(Math.cos(angle) * radius),
-                    y: Math.round(Math.sin(angle) * radius - 100)
+                    y: Math.round(Math.sin(angle) * radius - 120)
                 };
             }
 
