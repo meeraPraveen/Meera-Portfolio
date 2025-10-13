@@ -959,53 +959,7 @@
         }
 
         .blob-close {
-            position: fixed;
-            top: calc(50% - 45vh);
-            right: calc(50% - 45vw);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: rgba(218, 165, 32, 0.95);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 3px solid rgba(255, 255, 255, 0.8);
-            color: white;
-            font-size: 1.75rem;
-            font-weight: bold;
-            cursor: pointer;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            z-index: 1001;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-        }
-
-        @media (min-width: 1200px) {
-            .blob-close {
-                top: calc(50% - 450px);
-                right: calc(50% - 450px);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .blob-close {
-                top: calc(50% - 47.5vh);
-                right: calc(50% - 47.5vw);
-                width: 45px;
-                height: 45px;
-                font-size: 1.5rem;
-            }
-        }
-
-        .section-blob.expanded .blob-close {
-            display: flex;
-        }
-
-        .blob-close:hover {
-            transform: rotate(90deg) scale(1.1);
-            background: rgba(218, 165, 32, 1);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+            display: none !important;
         }
 
         .section-blob:not(.expanded):hover {
