@@ -348,19 +348,22 @@
         /* Step number styling */
         .process-step .step-number {
             position: absolute;
-            right: 1rem;
-            top: 1rem;
+            left: 50%;
+            top: -16px;
+            transform: translateX(-50%);
             background: linear-gradient(135deg, var(--primary-coral) 0%, var(--accent-blue) 100%);
             color: white;
-            width: 32px;
-            height: 32px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            font-size: 0.9rem;
-            box-shadow: 0 2px 8px rgba(224, 122, 95, 0.3);
+            font-size: 1.1rem;
+            box-shadow: 0 4px 12px rgba(224, 122, 95, 0.4);
+            border: 3px solid white;
+            z-index: 10;
         }
 
         .process-step:hover {
@@ -428,28 +431,51 @@
             opacity: 0.2;
         }
 
-        /* Enhanced Contact Section - Oval Shape with Glass Effect */
+        /* Enhanced Contact Section - Glossy Color Background */
         .contact-link {
             display: inline-flex;
             align-items: center;
-            padding: 1.25rem 2.5rem;
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, rgba(224, 122, 95, 0.6) 0%, rgba(244, 165, 131, 0.5) 50%, rgba(218, 165, 32, 0.4) 100%);
+            backdrop-filter: blur(15px) saturate(150%);
+            -webkit-backdrop-filter: blur(15px) saturate(150%);
             border-radius: 50px / 40px;
             color: var(--text-dark);
             text-decoration: none;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            box-shadow:
+                0 8px 20px rgba(224, 122, 95, 0.3),
+                0 4px 10px rgba(0, 0, 0, 0.15),
+                inset 0 1px 2px rgba(255, 255, 255, 0.5),
+                inset 0 -1px 2px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
-            border: 2px solid rgba(229, 231, 235, 0.4);
-            font-weight: 500;
+            border: 2px solid rgba(218, 165, 32, 0.6);
+            font-weight: 600;
+            font-size: 0.95rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-link::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, transparent 60%);
+            opacity: 0.6;
+            pointer-events: none;
         }
 
         .contact-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-            border-color: rgba(91, 155, 213, 0.6);
-            background: rgba(255, 255, 255, 0.85);
+            transform: translateY(-3px);
+            box-shadow:
+                0 12px 30px rgba(224, 122, 95, 0.4),
+                0 6px 15px rgba(0, 0, 0, 0.2),
+                inset 0 1px 3px rgba(255, 255, 255, 0.6),
+                inset 0 -1px 3px rgba(0, 0, 0, 0.15);
+            border-color: rgba(218, 165, 32, 0.9);
+            background: linear-gradient(135deg, rgba(224, 122, 95, 0.7) 0%, rgba(244, 165, 131, 0.6) 50%, rgba(218, 165, 32, 0.5) 100%);
             color: var(--text-dark);
             text-decoration: none;
         }
@@ -1024,15 +1050,15 @@
             gap: 0.5rem;
         }
 
-        /* Sub-blob styles - stationary */
+        /* Sub-blob styles - glossy color background matching LinkedIn button */
         .sub-blob {
             width: 100px;
             height: 100px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 2px solid rgba(255, 255, 255, 0.4);
+            background: linear-gradient(135deg, rgba(224, 122, 95, 0.6) 0%, rgba(244, 165, 131, 0.5) 50%, rgba(218, 165, 32, 0.4) 100%);
+            backdrop-filter: blur(15px) saturate(150%);
+            -webkit-backdrop-filter: blur(15px) saturate(150%);
+            border: 2px solid rgba(218, 165, 32, 0.6);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -1040,11 +1066,13 @@
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow:
-                0 6px 24px rgba(0, 0, 0, 0.12),
-                inset 0 1px 0 rgba(255, 255, 255, 0.4),
-                inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+                0 8px 20px rgba(224, 122, 95, 0.3),
+                0 4px 10px rgba(0, 0, 0, 0.15),
+                inset 0 1px 2px rgba(255, 255, 255, 0.5),
+                inset 0 -1px 2px rgba(0, 0, 0, 0.1);
             position: relative;
             transform-style: preserve-3d;
+            overflow: hidden;
         }
 
         .sub-blob::before {
@@ -1054,16 +1082,19 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.25) 0%, transparent 70%);
-            opacity: 0.5;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, transparent 60%);
+            opacity: 0.6;
             pointer-events: none;
         }
 
         .sub-blob:hover {
             box-shadow:
-                0 8px 28px rgba(0, 0, 0, 0.15),
-                inset 0 1px 0 rgba(255, 255, 255, 0.5);
-            background: rgba(255, 255, 255, 0.25);
+                0 12px 30px rgba(224, 122, 95, 0.4),
+                0 6px 15px rgba(0, 0, 0, 0.2),
+                inset 0 1px 3px rgba(255, 255, 255, 0.6),
+                inset 0 -1px 3px rgba(0, 0, 0, 0.15);
+            background: linear-gradient(135deg, rgba(224, 122, 95, 0.7) 0%, rgba(244, 165, 131, 0.6) 50%, rgba(218, 165, 32, 0.5) 100%);
+            border-color: rgba(218, 165, 32, 0.9);
         }
 
         .sub-blob-icon {
@@ -1488,14 +1519,13 @@
                     <h2 class="section-title text-center" style="margin-bottom: 2rem; font-family: 'Playfair Display', Georgia, serif; letter-spacing: -0.02em;">
                         Designing Experiences That Matter
                     </h2>
-                    <p class="mb-8 text-chocolate-medium leading-relaxed" style="font-weight: 400; letter-spacing: -0.005em; font-size: 1rem;">
+                    <p class="mb-4 text-chocolate-medium leading-relaxed" style="font-weight: 400; letter-spacing: -0.005em; font-size: 1rem;">
                         I am Meera Madhavan, ready to collaborate on your next project. Let's create digital experiences that are functional, and reliable.
                         <br><br>- Meera
                     </p>
-                    <div class="flex flex-col sm:flex-row justify-center items-center gap-6">
+                    <div class="flex flex-col sm:flex-row justify-center items-center gap-6" style="margin-top: 1rem;">
                         <a href="https://linkedin.com/in/madhavanmeera" target="_blank" class="contact-link">
-                            <span class="text-2xl mr-3">🔗</span>
-                            <span class="font-medium">LinkedIn Profile</span>
+                            <span class="font-medium">LinkedIn</span>
                         </a>
                     </div>
                 </div>
@@ -1505,7 +1535,7 @@
     <!-- End Blob Container -->
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white text-center py-8">
+    <footer class="text-center py-8" style="background: linear-gradient(135deg, rgba(224, 122, 95, 0.4) 0%, rgba(244, 165, 131, 0.3) 50%, rgba(218, 165, 32, 0.25) 100%); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); color: var(--text-dark);">
         <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
     <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="light" data-type="VERTICAL" data-vanity="madhavanmeera" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://ca.linkedin.com/in/madhavanmeera?trk=profile-badge">2025 Meera Madhavan. All rights reserved.</a></div>
         <!--<div class="max-w-6xl mx-auto">
@@ -1747,6 +1777,14 @@
                     b.style.opacity = '1';
                     b.style.pointerEvents = 'auto';
                 });
+
+                // Close all expanded portfolio sub-blobs if portfolio blob is being closed
+                if (blob.getAttribute('data-blob') === 'portfolio') {
+                    const portfolioItems = blob.querySelectorAll('.portfolio-item');
+                    portfolioItems.forEach(item => {
+                        item.classList.remove('expanded');
+                    });
+                }
             }
 
             // Add click event to each blob
