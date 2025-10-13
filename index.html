@@ -1358,15 +1358,57 @@
             color: var(--chocolate-dark);
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 480px) {
             .portfolio-semicircle-container {
-                height: 600px;
-                max-width: 340px;
+                height: 650px;
+                max-width: 300px;
             }
 
             .portfolio-item {
-                width: 80px;
-                height: 80px;
+                width: 70px;
+                height: 70px;
+            }
+
+            .portfolio-title {
+                font-size: 0.65rem;
+                padding: 0.4rem;
+            }
+
+            .portfolio-item.expanded {
+                width: 92vw;
+                height: 92vw;
+                max-width: 92vw;
+                max-height: 85vh;
+                min-height: 350px;
+                padding: 2rem 1.25rem;
+            }
+
+            .portfolio-item.expanded .portfolio-title,
+            .portfolio-item-content h3 {
+                font-size: 1.3rem;
+            }
+
+            .portfolio-item.expanded .portfolio-item-content {
+                max-width: 92%;
+                font-size: 0.85rem;
+            }
+
+            .portfolio-item.expanded .portfolio-close-btn {
+                top: 6%;
+                right: 6%;
+                font-size: 1.75rem;
+            }
+        }
+
+        @media (min-width: 481px) and (max-width: 768px) {
+            .portfolio-semicircle-container {
+                height: 600px;
+                max-width: 380px;
+            }
+
+            .portfolio-item {
+                width: 85px;
+                height: 85px;
             }
 
             .portfolio-title {
@@ -1378,7 +1420,7 @@
                 width: 90vw;
                 height: 90vw;
                 max-width: 90vw;
-                max-height: 90vh;
+                max-height: 88vh;
                 min-height: 400px;
                 padding: 2.5rem 1.5rem;
             }
@@ -1395,6 +1437,31 @@
             .portfolio-item.expanded .portfolio-close-btn {
                 top: 8%;
                 right: 8%;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .portfolio-semicircle-container {
+                height: 550px;
+                max-width: 700px;
+            }
+
+            .portfolio-item {
+                width: 110px;
+                height: 110px;
+            }
+
+            .portfolio-title {
+                font-size: 0.9rem;
+            }
+
+            .portfolio-item.expanded {
+                width: 85vw;
+                height: 85vw;
+                max-width: 650px;
+                max-height: 650px;
+                min-height: 450px;
+                padding: 2.75rem 2rem;
             }
         }
 
@@ -2163,13 +2230,39 @@
             const portfolioItems = document.querySelectorAll('.portfolio-item');
             const portfolioBlob = document.querySelector('[data-blob="portfolio"]');
 
-            // Generate random positions for blobs
-            const isMobile = window.innerWidth <= 768;
-            const containerWidth = isMobile ? 340 : 900;
-            const containerHeight = isMobile ? 600 : 550;
-            const blobSize = isMobile ? 80 : 120;
-            const padding = isMobile ? 50 : 120; // Increased padding from edges to prevent cutoff
-            const minDistance = isMobile ? 120 : 220; // Minimum distance between blob centers - increased for 5 blobs
+            // Generate random positions for blobs - fully responsive
+            const screenWidth = window.innerWidth;
+            let containerWidth, containerHeight, blobSize, padding, minDistance;
+
+            if (screenWidth <= 480) {
+                // Small mobile phones
+                containerWidth = 300;
+                containerHeight = 650;
+                blobSize = 70;
+                padding = 45;
+                minDistance = 110;
+            } else if (screenWidth <= 768) {
+                // Tablets and larger phones
+                containerWidth = 380;
+                containerHeight = 600;
+                blobSize = 85;
+                padding = 55;
+                minDistance = 130;
+            } else if (screenWidth <= 1024) {
+                // Small laptops/tablets landscape
+                containerWidth = 700;
+                containerHeight = 550;
+                blobSize = 110;
+                padding = 90;
+                minDistance = 180;
+            } else {
+                // Desktop and large screens
+                containerWidth = 900;
+                containerHeight = 550;
+                blobSize = 120;
+                padding = 120;
+                minDistance = 220;
+            }
 
             const blobPositions = {};
 
@@ -2215,10 +2308,11 @@
                 // Arrange in a pentagon pattern with guaranteed spacing
                 const fallbackIndex = existingPositions.length;
                 const angle = (fallbackIndex * Math.PI * 2) / 5 - Math.PI / 2; // Start from top
-                const radius = isMobile ? 120 : 180;
+                const radius = Math.min(containerWidth, containerHeight) * 0.35;
+                const yOffset = containerHeight * 0.3;
                 return {
                     x: Math.round(Math.cos(angle) * radius),
-                    y: Math.round(Math.sin(angle) * radius - (isMobile ? 180 : 120))
+                    y: Math.round(Math.sin(angle) * radius - yOffset)
                 };
             }
 
