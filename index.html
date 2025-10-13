@@ -401,34 +401,95 @@
             background: rgba(255, 255, 255, 0.7);
         }
 
-        /* Enhanced Testimonial Styling - Oval Shape with Glass Effect */
-        .testimonial-card {
-            background: rgba(255, 255, 255, 0.75);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 50% / 35%;
-            padding: 3rem 2.5rem;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-            position: relative;
-            border: 2px solid rgba(229, 231, 235, 0.4);
-            transition: all 0.3s ease;
+        /* Testimonial Cards - Small Ovals */
+        .testimonials-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        .testimonial-card:hover {
-            border-color: rgba(91, 155, 213, 0.5);
-            transform: translateY(-4px);
-            background: rgba(255, 255, 255, 0.85);
+        .testimonial-card {
+            background: linear-gradient(135deg, rgba(224, 122, 95, 0.6) 0%, rgba(244, 165, 131, 0.5) 50%, rgba(218, 165, 32, 0.4) 100%);
+            backdrop-filter: blur(15px) saturate(150%);
+            -webkit-backdrop-filter: blur(15px) saturate(150%);
+            border-radius: 50px / 30px;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 8px 20px rgba(224, 122, 95, 0.3);
+            position: relative;
+            border: 2px solid rgba(218, 165, 32, 0.6);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            overflow: hidden;
         }
 
         .testimonial-card::before {
-            content: '"';
+            content: '';
             position: absolute;
-            top: 1rem;
-            left: 2rem;
-            font-size: 5rem;
-            color: var(--primary-coral);
-            font-family: serif;
-            opacity: 0.2;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.4) 0%, transparent 60%);
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .testimonial-card:hover:not(.expanded) {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(224, 122, 95, 0.4);
+            border-color: rgba(218, 165, 32, 0.9);
+        }
+
+        /* Testimonial header - always visible */
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .testimonial-name {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            text-align: center;
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Testimonial content - hidden initially */
+        .testimonial-content {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, opacity 0.4s ease, margin 0.3s ease;
+            margin-top: 0;
+        }
+
+        .testimonial-card.expanded {
+            border-radius: 30px;
+            padding: 2.5rem 2rem;
+        }
+
+        .testimonial-card.expanded .testimonial-content {
+            max-height: 800px;
+            opacity: 1;
+            margin-top: 1.5rem;
+            overflow-y: auto;
+        }
+
+        .testimonial-card.expanded .testimonial-content::-webkit-scrollbar {
+            display: none;
+        }
+
+        .testimonial-card.expanded .testimonial-content {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
         }
 
         /* Enhanced Contact Section - Glossy Color Background */
@@ -1704,28 +1765,42 @@
                 <div class="blob-content-card">
                     <h2 class="section-title text-center" style="margin-bottom: 2rem;">Testimonials</h2>
 
-                    <div class="testimonial-card" style="margin-top: 0;">
-                        <blockquote class="text-xl italic text-chocolate-medium mb-6 text-center leading-relaxed" style="font-family: 'Caveat', cursive; font-weight: 600; letter-spacing: 0.01em; line-height: 1.6; font-size: 1.5rem;">
-                            Meera's expertise in requirements gathering and business analysis enabled the development of technically robust solutions that not only met our needs but were also intuitive and easy to use.
-                        </blockquote>
-                        <footer class="text-center">
-                            <div class="font-semibold text-chocolate text-lg"><a href="https://linkedin.com/in/ashwin-k-05330a33" target="_blank" style="text-decoration: none; color: inherit; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Ashwin Krishnamurthy</a></div>
-                            <div class="text-chocolate-light">Program Manager @ <a href="https://www.microsoft.com" target="_blank" style="text-decoration: none; color: inherit; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Microsoft</a></div>
-                        </footer>
-                    </div>
+                    <div class="testimonials-container">
+                        <!-- Testimonial 1 -->
+                        <div class="testimonial-card" data-testimonial="1">
+                            <div class="testimonial-header">
+                                <div class="testimonial-name">Ashwin Krishnamurthy</div>
+                            </div>
+                            <div class="testimonial-content">
+                                <div class="text-chocolate-light text-center" style="margin-bottom: 1rem;">Program Manager @ <a href="https://www.microsoft.com" target="_blank" style="text-decoration: none; color: inherit; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Microsoft</a></div>
+                                <blockquote class="text-chocolate-medium text-center leading-relaxed" style="font-family: 'Caveat', cursive; font-weight: 600; letter-spacing: 0.01em; line-height: 1.6; font-size: 1.25rem; font-style: italic;">
+                                    "Meera's expertise in requirements gathering and business analysis enabled the development of technically robust solutions that not only met our needs but were also intuitive and easy to use."
+                                </blockquote>
+                                <div class="text-center" style="margin-top: 1rem;">
+                                    <a href="https://linkedin.com/in/ashwin-k-05330a33" target="_blank" style="color: var(--chocolate-dark); text-decoration: underline; font-size: 0.9rem;">LinkedIn Profile</a>
+                                </div>
+                            </div>
+                        </div>
 
-                    <div class="testimonial-card" style="margin-top: 2rem;">
-                        <blockquote class="text-xl italic text-chocolate-medium mb-6 text-center leading-relaxed" style="font-family: 'Caveat', cursive; font-weight: 600; letter-spacing: 0.01em; line-height: 1.6; font-size: 1.5rem;">
-                            Meera's Transformative Work on <a href="https://inclusiveaifoundation.com/" target="_blank" style="text-decoration: none; color: inherit; transition: opacity 0.3s ease; border-bottom: 1px dotted currentColor;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">www.inclusiveaifoundation.com</a><br><br>
-                            From the very first brainstorming session to the final launch, Meera didn't just build a website, she crafted a digital space that feels both inspiring and accessible. Her creativity, technical expertise, and attention to detail brought our vision to life in ways we hadn't imagined.<br><br>
-                            We are beyond grateful for her dedication and the beautiful result she delivered.<br><br>
-                            Every design choice, from the colour palette to the typography was intentional, inclusive, and aligned with our ethos. The site's seamless navigation and robust accessibility features ensure that no visitor feels left out, regardless of ability or background.<br><br>
-                            If you're searching for a designer who can transform your vision into a meaningful digital experience, Meera is not just the right choice but someone who can turn vision into reality with grace and brilliance with her professionalism, artistry and relentless pursuit.
-                        </blockquote>
-                        <footer class="text-center">
-                            <div class="font-semibold text-chocolate text-lg"><a href="https://linkedin.com/in/madhavee-inamdar-0220b9a" target="_blank" style="text-decoration: none; color: inherit; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Madhavee Inamdar</a></div>
-                            <div class="text-chocolate-light">Diversity, Equity & Inclusion Strategist</div>
-                        </footer>
+                        <!-- Testimonial 2 -->
+                        <div class="testimonial-card" data-testimonial="2">
+                            <div class="testimonial-header">
+                                <div class="testimonial-name">Madhavee Inamdar</div>
+                            </div>
+                            <div class="testimonial-content">
+                                <div class="text-chocolate-light text-center" style="margin-bottom: 1rem;">Diversity, Equity & Inclusion Strategist</div>
+                                <blockquote class="text-chocolate-medium text-center leading-relaxed" style="font-family: 'Caveat', cursive; font-weight: 600; letter-spacing: 0.01em; line-height: 1.6; font-size: 1.25rem; font-style: italic;">
+                                    "Meera's Transformative Work on <a href="https://inclusiveaifoundation.com/" target="_blank" style="text-decoration: none; color: inherit; border-bottom: 1px dotted currentColor;">www.inclusiveaifoundation.com</a><br><br>
+                                    From the very first brainstorming session to the final launch, Meera didn't just build a website, she crafted a digital space that feels both inspiring and accessible. Her creativity, technical expertise, and attention to detail brought our vision to life in ways we hadn't imagined.<br><br>
+                                    We are beyond grateful for her dedication and the beautiful result she delivered.<br><br>
+                                    Every design choice, from the colour palette to the typography was intentional, inclusive, and aligned with our ethos. The site's seamless navigation and robust accessibility features ensure that no visitor feels left out, regardless of ability or background.<br><br>
+                                    If you're searching for a designer who can transform your vision into a meaningful digital experience, Meera is not just the right choice but someone who can turn vision into reality with grace and brilliance with her professionalism, artistry and relentless pursuit."
+                                </blockquote>
+                                <div class="text-center" style="margin-top: 1rem;">
+                                    <a href="https://linkedin.com/in/madhavee-inamdar-0220b9a" target="_blank" style="color: var(--chocolate-dark); text-decoration: underline; font-size: 0.9rem;">LinkedIn Profile</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -2272,6 +2347,28 @@
                         // portfolioBackdrop.classList.remove('active');
                         // document.body.style.overflow = '';
                     }
+                }
+            });
+        });
+
+        // Testimonial cards click-to-expand functionality
+        const testimonialCards = document.querySelectorAll('.testimonial-card');
+        testimonialCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const isExpanded = card.classList.contains('expanded');
+
+                // Collapse all other cards
+                testimonialCards.forEach(otherCard => {
+                    if (otherCard !== card) {
+                        otherCard.classList.remove('expanded');
+                    }
+                });
+
+                // Toggle this card
+                if (isExpanded) {
+                    card.classList.remove('expanded');
+                } else {
+                    card.classList.add('expanded');
                 }
             });
         });
