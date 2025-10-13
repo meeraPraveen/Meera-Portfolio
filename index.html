@@ -572,6 +572,12 @@
 
             .section-title {
                 font-size: 1.875rem;
+                padding: 0 0.5rem;
+            }
+
+            .blob-content-card h2.section-title {
+                font-size: 1.5rem;
+                padding: 0 0.75rem;
             }
         }
 
@@ -861,6 +867,8 @@
         @media (max-width: 768px) {
             .blob-content-card h2.section-title {
                 font-size: 1.75rem;
+                padding: 0 1rem;
+                word-wrap: break-word;
             }
 
             .blob-content-card p,
@@ -1352,16 +1360,18 @@
 
         @media (max-width: 768px) {
             .portfolio-semicircle-container {
-                height: 350px;
+                height: 600px;
+                max-width: 340px;
             }
 
             .portfolio-item {
-                width: 100px;
-                height: 100px;
+                width: 80px;
+                height: 80px;
             }
 
             .portfolio-title {
-                font-size: 0.85rem;
+                font-size: 0.75rem;
+                padding: 0.5rem;
             }
 
             .portfolio-item.expanded {
@@ -1370,7 +1380,7 @@
                 max-width: 90vw;
                 max-height: 90vh;
                 min-height: 400px;
-                padding: 3rem 2rem;
+                padding: 2.5rem 1.5rem;
             }
 
             .portfolio-item.expanded .portfolio-title,
@@ -1379,7 +1389,12 @@
             }
 
             .portfolio-item.expanded .portfolio-item-content {
-                max-width: 85%;
+                max-width: 90%;
+            }
+
+            .portfolio-item.expanded .portfolio-close-btn {
+                top: 8%;
+                right: 8%;
             }
         }
 
@@ -2150,11 +2165,11 @@
 
             // Generate random positions for blobs
             const isMobile = window.innerWidth <= 768;
-            const containerWidth = isMobile ? 360 : 900;
-            const containerHeight = isMobile ? 350 : 550;
-            const blobSize = isMobile ? 100 : 120;
-            const padding = isMobile ? 70 : 120; // Increased padding from edges to prevent cutoff
-            const minDistance = isMobile ? 160 : 220; // Minimum distance between blob centers - increased for 5 blobs
+            const containerWidth = isMobile ? 340 : 900;
+            const containerHeight = isMobile ? 600 : 550;
+            const blobSize = isMobile ? 80 : 120;
+            const padding = isMobile ? 50 : 120; // Increased padding from edges to prevent cutoff
+            const minDistance = isMobile ? 120 : 220; // Minimum distance between blob centers - increased for 5 blobs
 
             const blobPositions = {};
 
@@ -2200,10 +2215,10 @@
                 // Arrange in a pentagon pattern with guaranteed spacing
                 const fallbackIndex = existingPositions.length;
                 const angle = (fallbackIndex * Math.PI * 2) / 5 - Math.PI / 2; // Start from top
-                const radius = isMobile ? 100 : 180;
+                const radius = isMobile ? 120 : 180;
                 return {
                     x: Math.round(Math.cos(angle) * radius),
-                    y: Math.round(Math.sin(angle) * radius - 120)
+                    y: Math.round(Math.sin(angle) * radius - (isMobile ? 180 : 120))
                 };
             }
 
