@@ -1255,21 +1255,7 @@
             transition-delay: 0.4s;
         }
 
-        .portfolio-item:hover:not(.expanded) {
-            box-shadow:
-                0 15px 35px rgba(224, 122, 95, 0.5),
-                0 8px 20px rgba(0, 0, 0, 0.25),
-                inset 0 1px 3px rgba(255, 255, 255, 0.6),
-                inset 0 -1px 3px rgba(0, 0, 0, 0.15);
-            background: linear-gradient(135deg, rgba(224, 122, 95, 0.9) 0%, rgba(244, 165, 131, 0.8) 50%, rgba(218, 165, 32, 0.7) 100%);
-            border-color: rgba(218, 165, 32, 1);
-            z-index: 20;
-        }
-
-        /* Magnetic effect - other blobs move toward hovered blob */
-        .portfolio-item.magnetic-attract {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+        /* Remove hover effects - keep bubbles static */
 
         /* Portfolio card header - circular blob title */
         .portfolio-card-header {
@@ -2479,51 +2465,7 @@
                 });
             }
 
-            // Magnetic hover effect - other blobs move toward hovered blob
-            portfolioItems.forEach((item, index) => {
-                const position = parseInt(item.getAttribute('data-position'));
-
-                // Hover to attract other blobs
-                item.addEventListener('mouseenter', () => {
-                    if (item.classList.contains('expanded') || !item.classList.contains('visible')) return;
-
-                    const hoveredX = blobPositions[position].x;
-                    const hoveredY = blobPositions[position].y;
-
-                    portfolioItems.forEach((otherItem, otherIndex) => {
-                        if (otherItem === item || !otherItem.classList.contains('visible')) return;
-
-                        const otherPosition = parseInt(otherItem.getAttribute('data-position'));
-                        const baseX = blobPositions[otherPosition].x;
-                        const baseY = blobPositions[otherPosition].y;
-
-                        // Calculate direction and distance to move (50% closer)
-                        const diffX = (hoveredX - baseX) * 0.5;
-                        const diffY = (hoveredY - baseY) * 0.5;
-                        const newX = baseX + diffX;
-                        const newY = baseY + diffY;
-
-                        otherItem.classList.add('magnetic-attract');
-                        otherItem.style.transform = `translateX(-50%) translate(${newX}px, ${newY}px) scale(1)`;
-                    });
-                });
-
-                // Mouse leave - reset positions
-                item.addEventListener('mouseleave', () => {
-                    if (!item.classList.contains('visible')) return;
-
-                    portfolioItems.forEach((otherItem) => {
-                        if (otherItem === item || !otherItem.classList.contains('visible')) return;
-
-                        const otherPosition = parseInt(otherItem.getAttribute('data-position'));
-                        const baseX = blobPositions[otherPosition].x;
-                        const baseY = blobPositions[otherPosition].y;
-
-                        otherItem.classList.remove('magnetic-attract');
-                        otherItem.style.transform = `translateX(-50%) translate(${baseX}px, ${baseY}px) scale(1)`;
-                    });
-                });
-            });
+            // Removed magnetic hover effect - bubbles remain static
 
             // Click to expand blobs into rectangular cards
             portfolioItems.forEach(item => {
