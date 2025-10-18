@@ -698,9 +698,9 @@
             width: 240px;
             height: 240px;
             border-radius: 50%;
-            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.05) 100%);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.35) 50%, rgba(255, 255, 255, 0.25) 100%);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border: 3px solid rgba(218, 165, 32, 0.6);
             display: flex;
             align-items: center;
@@ -709,13 +709,8 @@
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow:
                 0 20px 60px rgba(0, 0, 0, 0.3),
-                0 10px 25px rgba(0, 0, 0, 0.2),
-                0 5px 15px rgba(0, 0, 0, 0.15),
                 0 0 20px rgba(218, 165, 32, 0.3),
-                inset 0 2px 5px rgba(255, 255, 255, 0.6),
-                inset 0 -2px 5px rgba(0, 0, 0, 0.15),
-                inset -3px -3px 10px rgba(0, 0, 0, 0.1),
-                inset 3px 3px 10px rgba(255, 255, 255, 0.4);
+                inset 0 2px 5px rgba(255, 255, 255, 0.6);
             position: absolute;
             overflow: hidden;
             transform-style: preserve-3d;
@@ -732,20 +727,12 @@
             z-index: 1;
         }
 
-        /* Row 2: Design Alchemy (central-blob), Portfolio (position 1), Process (position 2) */
-        .central-blob {
-            position: absolute;
-            bottom: 230px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 2;
-        }
-
+        /* Row 2: Portfolio (position 1), Design Alchemy (position 2) */
         .orbit-blob[data-position="1"] {
             position: absolute;
             bottom: 230px;
             left: 50%;
-            transform: translateX(-50%) translateX(-240px);
+            transform: translateX(-50%) translateX(120px);
             z-index: 1;
         }
 
@@ -753,7 +740,7 @@
             position: absolute;
             bottom: 230px;
             left: 50%;
-            transform: translateX(-50%) translateX(240px);
+            transform: translateX(-50%) translateX(-120px);
             z-index: 1;
         }
 
@@ -773,19 +760,15 @@
                 transform: translateX(-50%);
             }
 
-            /* Row 2: Portfolio, Design Alchemy, Process */
+            /* Row 2: Projects (position 1), Design Alchemy (position 2) */
             .orbit-blob[data-position="1"] {
                 bottom: 180px;
-                transform: translateX(-50%) translateX(-180px);
-            }
-
-            .central-blob {
-                bottom: 180px;
+                transform: translateX(-50%) translateX(90px);
             }
 
             .orbit-blob[data-position="2"] {
                 bottom: 180px;
-                transform: translateX(-50%) translateX(180px);
+                transform: translateX(-50%) translateX(-90px);
             }
 
             /* Row 3: Testimonials */
@@ -809,24 +792,19 @@
             /* Stack vertically on tablet */
             /* About Me */
             .orbit-blob[data-position="0"] {
-                bottom: 620px;
-                transform: translateX(-50%);
-            }
-
-            /* Portfolio */
-            .orbit-blob[data-position="1"] {
-                bottom: 460px;
+                bottom: 540px;
                 transform: translateX(-50%);
             }
 
             /* Design Alchemy */
-            .central-blob {
-                bottom: 300px;
+            .orbit-blob[data-position="2"] {
+                bottom: 360px;
+                transform: translateX(-50%);
             }
 
-            /* Process */
-            .orbit-blob[data-position="2"] {
-                bottom: 140px;
+            /* Projects */
+            .orbit-blob[data-position="1"] {
+                bottom: 180px;
                 transform: translateX(-50%);
             }
 
@@ -851,24 +829,19 @@
             /* Stack vertically on mobile */
             /* About Me */
             .orbit-blob[data-position="0"] {
-                bottom: 520px;
-                transform: translateX(-50%);
-            }
-
-            /* Portfolio */
-            .orbit-blob[data-position="1"] {
-                bottom: 390px;
+                bottom: 420px;
                 transform: translateX(-50%);
             }
 
             /* Design Alchemy */
-            .central-blob {
-                bottom: 260px;
+            .orbit-blob[data-position="2"] {
+                bottom: 280px;
+                transform: translateX(-50%);
             }
 
-            /* Process */
-            .orbit-blob[data-position="2"] {
-                bottom: 130px;
+            /* Projects */
+            .orbit-blob[data-position="1"] {
+                bottom: 140px;
                 transform: translateX(-50%);
             }
 
@@ -1034,35 +1007,39 @@
         }
 
         .section-blob.expanded {
-            width: 85vw;
-            max-width: 1000px;
-            height: 85vh;
-            max-height: 800px;
-            min-height: 500px;
+            width: auto;
+            max-width: min(1000px, 85vw);
+            height: auto;
+            max-height: 85vh;
+            min-height: auto;
             border-radius: 30px;
             z-index: 100;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.1) 100%);
-            backdrop-filter: blur(25px) saturate(180%);
-            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.25) 100%);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border: 4px solid rgba(218, 165, 32, 0.5);
             box-shadow:
                 0 25px 80px rgba(0, 0, 0, 0.3),
-                0 10px 30px rgba(0, 0, 0, 0.15),
                 0 0 30px rgba(218, 165, 32, 0.4),
-                inset 0 3px 8px rgba(255, 255, 255, 0.5),
-                inset 0 -3px 8px rgba(0, 0, 0, 0.15);
+                inset 0 3px 8px rgba(255, 255, 255, 0.5);
             padding: 2.5rem 2rem;
             overflow-y: auto;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%) !important;
             scrollbar-width: none; /* Firefox */
             -ms-overflow-style: none; /* IE and Edge */
+        }
+
+        /* About Me and Testimonials specific background */
+        .section-blob[data-blob="about"].expanded,
+        .section-blob[data-blob="testimonials"].expanded {
+            background: linear-gradient(135deg, rgba(253, 177, 161, 0.7) 0%, rgba(253, 177, 161, 0.6) 50%, rgba(253, 177, 161, 0.55) 100%);
         }
 
         .section-blob.expanded::-webkit-scrollbar {
@@ -1073,9 +1050,15 @@
             display: none;
         }
 
-        /* Hide scrollbar in testimonials section */
-        .section-blob[data-blob="testimonials"] .blob-content::-webkit-scrollbar {
+        /* Hide scrollbar in testimonials and about section */
+        .section-blob[data-blob="testimonials"] .blob-content::-webkit-scrollbar,
+        .section-blob[data-blob="about"] .blob-content::-webkit-scrollbar {
             display: none;
+        }
+
+        .section-blob[data-blob="about"] .blob-content {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
         }
 
         .section-blob.expanded::before {
@@ -1842,32 +1825,18 @@
 
     <!-- Semi-Circle Dial Container -->
     <div class="semi-circle-container">
-        <!-- Design Alchemy Blob (center) -->
-        <div class="section-blob central-blob" data-blob="design-alchemy">
-            <div class="blob-title">Design<br>Alchemy</div>
-            <div class="blob-content">
-                <button class="blob-close" aria-label="Close">×</button>
-                <div class="blob-content-card">
-                    <h2 class="section-title text-center" style="margin-bottom: 1rem;">Design Alchemy</h2>
-                    <h3 class="text-center text-chocolate" style="font-family: 'Playfair Display', Georgia, serif; font-style: italic; margin-bottom: 1.5rem; opacity: 0.8;">Sketches to Solutions</h3>
-                    <p class="text-xl md:text-2xl opacity-95 text-chocolate-medium leading-relaxed" style="font-weight: 400; letter-spacing: -0.005em; font-size: 1rem;">
-                        I thrive on turning complexity into clarity through design and analysis. By combining creativity with technical know-how, I translate business requirements into clear wireframes and streamlined workflows that evolve into intuitive interfaces and seamless user experiences. From mapping processes to sketching early concepts and delivering polished, production-ready products, my focus is always on creating solutions people not only use but truly enjoy.<br><br>This website was developed with the support of Claude Code—reflecting my commitment to embracing AI adoption as a key part of my career growth.
-                    </p>
-                </div>
-            </div>
-        </div>
-
         <!-- About Me Blob -->
         <div class="section-blob orbit-blob" data-blob="about" data-position="0">
             <div class="blob-title">About Me</div>
             <div class="blob-content">
                 <button class="blob-close" aria-label="Close">×</button>
-                <h2 class="section-title text-center" style="margin-bottom: 2rem;">About Me</h2>
+                <h2 class="section-title text-center" style="margin-bottom: 1rem;">About Me</h2>
+                <h3 class="text-center text-chocolate" style="font-weight: 700; margin-bottom: 1.5rem; opacity: 1; color: var(--text-dark);">Sketches to Solutions</h3>
                 <p class="text-chocolate-medium leading-relaxed" style="font-weight: 600; letter-spacing: -0.005em; font-size: 1rem; max-width: 800px; text-align: center; color: var(--text-dark);">
-                    With over a decade in application support and development, I bring design, analysis, and engineering together to create meaningful digital experiences. My background in CRM, cloud platforms, and automation helps me turn complex requirements into clear workflows and wireframes that evolve into intuitive, user-centered designs. I focus on building solutions that look good, work seamlessly, and drive real business impact.
+                    I thrive on transforming complexity into clarity through design and analysis. By combining creativity with technical understanding, I translate business requirements into clear wireframes and streamlined workflows that evolve into intuitive interfaces and seamless user experiences. From mapping processes to sketching early concepts and delivering production-ready products, my focus remains on creating solutions people not only use but truly enjoy.
                 </p>
                 <div class="flex justify-center items-center" style="margin-top: 2rem;">
-                    <a href="https://linkedin.com/in/madhavanmeera" target="_blank" class="contact-link" style="min-width: 200px; padding: 0.75rem 2rem; text-align: center; display: inline-block;">
+                    <a href="https://linkedin.com/in/madhavanmeera" target="_blank" style="min-width: 200px; padding: 0.75rem 2rem; text-align: center; display: inline-block; background-color: #5C98D7; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; transition: opacity 0.3s ease; border: 2px solid rgba(218, 165, 32, 0.6); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), 0 2px 6px rgba(0, 0, 0, 0.15), 0 0 8px rgba(218, 165, 32, 0.3);" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
                         <span class="font-medium">LinkedIn</span>
                     </a>
                 </div>
@@ -1876,10 +1845,10 @@
 
         <!-- Portfolio Blob -->
         <div class="section-blob orbit-blob" data-blob="portfolio" data-position="1">
-            <div class="blob-title">Portfolio</div>
+            <div class="blob-title">Projects</div>
             <div class="blob-content">
                 <button class="blob-close" aria-label="Close">×</button>
-                <h2 class="section-title text-center" style="margin-bottom: 2rem; position: relative; z-index: 2;">Portfolio Highlights</h2>
+                <h2 class="section-title text-center" style="margin-bottom: 2rem; position: relative; z-index: 2;">Projects</h2>
 
                 <!-- Semicircular Blob Layout -->
                 <div class="portfolio-semicircle-container">
@@ -1981,11 +1950,11 @@
 
         <!-- Process Blob -->
         <div class="section-blob orbit-blob" data-blob="process" data-position="2">
-            <div class="blob-title">My Process</div>
+            <div class="blob-title">Design Alchemy</div>
             <div class="blob-content">
                 <button class="blob-close" aria-label="Close">×</button>
                 <div class="blob-content-card">
-                    <h2 class="section-title text-center" style="margin-bottom: 2rem;">My Process</h2>
+                    <h2 class="section-title text-center" style="margin-bottom: 2rem;">Design Alchemy</h2>
                     <div class="process-list">
                         <div class="process-step">
                             <div class="step-number">1</div>
@@ -2028,7 +1997,9 @@
                         "Meera's expertise in requirements gathering and business analysis enabled the development of technically robust solutions that not only met our needs but were also intuitive and easy to use."
                     </blockquote>
                     <div class="text-center" style="margin-top: 1rem;">
-                        <a href="https://linkedin.com/in/ashwin-k-05330a33" target="_blank" style="color: var(--chocolate-dark); text-decoration: underline; font-size: 0.9rem; font-weight: 700;">LinkedIn Profile</a>
+                        <a href="https://linkedin.com/in/ashwin-k-05330a33" target="_blank" style="min-width: 200px; padding: 0.75rem 2rem; text-align: center; display: inline-block; background-color: #5C98D7; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; transition: opacity 0.3s ease; border: 2px solid rgba(218, 165, 32, 0.6); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), 0 2px 6px rgba(0, 0, 0, 0.15), 0 0 8px rgba(218, 165, 32, 0.3);" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+                            <span class="font-medium">LinkedIn</span>
+                        </a>
                     </div>
                 </div>
 
@@ -2044,7 +2015,9 @@
                         If you're searching for a designer who can transform your vision into a meaningful digital experience, Meera is not just the right choice but someone who can turn vision into reality with grace and brilliance with her professionalism, artistry and relentless pursuit."
                     </blockquote>
                     <div class="text-center" style="margin-top: 1rem;">
-                        <a href="https://linkedin.com/in/madhavee-inamdar-0220b9a" target="_blank" style="color: var(--chocolate-dark); text-decoration: underline; font-size: 0.9rem; font-weight: 700;">LinkedIn Profile</a>
+                        <a href="https://linkedin.com/in/madhavee-inamdar-0220b9a" target="_blank" style="min-width: 200px; padding: 0.75rem 2rem; text-align: center; display: inline-block; background-color: #5C98D7; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; transition: opacity 0.3s ease; border: 2px solid rgba(218, 165, 32, 0.6); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), 0 2px 6px rgba(0, 0, 0, 0.15), 0 0 8px rgba(218, 165, 32, 0.3);" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+                            <span class="font-medium">LinkedIn</span>
+                        </a>
                     </div>
                 </div>
             </div>
