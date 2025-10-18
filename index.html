@@ -1600,6 +1600,88 @@
             font-weight: 600;
         }
 
+        /* Image carousel for portfolio projects */
+        .project-image-carousel {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 2rem auto;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .carousel-images {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            width: 100%;
+        }
+
+        .carousel-image {
+            min-width: 100%;
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .carousel-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem;
+            z-index: 10;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            border: 2px solid rgba(218, 165, 32, 0.6);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-dot.active {
+            background: rgba(218, 165, 32, 0.9);
+            transform: scale(1.3);
+        }
+
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.8);
+            border: 2px solid rgba(218, 165, 32, 0.6);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1B0F0C;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .carousel-arrow:hover {
+            background: rgba(253, 177, 161, 0.9);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-arrow.prev {
+            left: 10px;
+        }
+
+        .carousel-arrow.next {
+            right: 10px;
+        }
+
         /* Responsive process layout */
         @media (max-width: 768px) {
             .section-blob[data-blob="process"].expanded .blob-content {
@@ -2366,8 +2448,27 @@
                         <h3>RPA Workflow Migration</h3>
                         <ul>
                             <li>Designed and developed dashboards that provided stakeholders with clear visibility into process runs and the status of daily operations.</li>
-                            <li>Designed and developed a user interface for process runs that enabled RPA controllers to trigger, monitor, and troubleshoot daily operations—reducing issue resolution time and mitigating potential risks.</li>
                         </ul>
+
+                        <!-- Image Carousel -->
+                        <div class="project-image-carousel">
+                            <div class="carousel-arrow prev" onclick="moveRPACarousel(-1)">‹</div>
+                            <div class="carousel-arrow next" onclick="moveRPACarousel(1)">›</div>
+
+                            <div class="carousel-images" id="rpa-carousel">
+                                <img src="RPA.PNG" alt="RPA Dashboard 1" class="carousel-image">
+                                <img src="RPA2.PNG" alt="RPA Dashboard 2" class="carousel-image">
+                                <img src="RPA3.PNG" alt="RPA Dashboard 3" class="carousel-image">
+                                <img src="RPA4.png" alt="RPA Dashboard 4" class="carousel-image">
+                            </div>
+
+                            <div class="carousel-controls">
+                                <div class="carousel-dot active" onclick="goToRPASlide(0)"></div>
+                                <div class="carousel-dot" onclick="goToRPASlide(1)"></div>
+                                <div class="carousel-dot" onclick="goToRPASlide(2)"></div>
+                                <div class="carousel-dot" onclick="goToRPASlide(3)"></div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="portfolio-detail" id="project-healthcare">
@@ -2971,6 +3072,43 @@
                 });
             });
         });
+
+        // RPA Image Carousel
+        let rpaCurrentSlide = 0;
+
+        function moveRPACarousel(direction) {
+            const carousel = document.getElementById('rpa-carousel');
+            const dots = document.querySelectorAll('#project-rpa .carousel-dot');
+            const totalSlides = 4;
+
+            rpaCurrentSlide += direction;
+
+            if (rpaCurrentSlide < 0) {
+                rpaCurrentSlide = totalSlides - 1;
+            } else if (rpaCurrentSlide >= totalSlides) {
+                rpaCurrentSlide = 0;
+            }
+
+            carousel.style.transform = `translateX(-${rpaCurrentSlide * 100}%)`;
+
+            // Update dots
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === rpaCurrentSlide);
+            });
+        }
+
+        function goToRPASlide(slideIndex) {
+            const carousel = document.getElementById('rpa-carousel');
+            const dots = document.querySelectorAll('#project-rpa .carousel-dot');
+
+            rpaCurrentSlide = slideIndex;
+            carousel.style.transform = `translateX(-${rpaCurrentSlide * 100}%)`;
+
+            // Update dots
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === rpaCurrentSlide);
+            });
+        }
 
         // Portfolio Blob Semicircle - Scroll visibility & expansion
         document.addEventListener('DOMContentLoaded', () => {
