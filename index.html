@@ -1504,6 +1504,169 @@
             }
         }
 
+        /* Process/Design Alchemy expanded layout - same as portfolio */
+        .section-blob[data-blob="process"].expanded .blob-content {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            justify-content: flex-start;
+            padding: 2rem;
+            width: 100%;
+            height: 100%;
+        }
+
+        .process-menu {
+            width: 250px;
+            min-width: 250px;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            padding-right: 2rem;
+            border-right: 2px solid rgba(218, 165, 32, 0.3);
+        }
+
+        .process-menu-item {
+            background: rgba(255, 255, 255, 0.5);
+            border: 2px solid rgba(218, 165, 32, 0.4);
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            color: var(--text-dark);
+            text-align: left;
+            font-size: 0.95rem;
+        }
+
+        .process-menu-item:hover {
+            background: rgba(253, 177, 161, 0.6);
+            border-color: rgba(218, 165, 32, 0.6);
+            transform: translateX(5px);
+        }
+
+        .process-menu-item.active {
+            background: rgba(253, 177, 161, 0.7);
+            border-color: rgba(218, 165, 32, 0.8);
+            box-shadow: 0 4px 12px rgba(218, 165, 32, 0.3);
+        }
+
+        .process-content-area {
+            flex: 1;
+            padding-left: 2rem;
+            overflow-y: auto;
+            max-height: 100%;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .process-content-area::-webkit-scrollbar {
+            display: none;
+        }
+
+        .process-detail {
+            display: none;
+        }
+
+        .process-detail.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .process-detail h3 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .process-detail p {
+            color: var(--text-dark);
+            font-weight: 500;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+
+        .process-detail ul {
+            list-style: disc;
+            padding-left: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .process-detail ul li {
+            margin-bottom: 0.75rem;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        /* Responsive process layout */
+        @media (max-width: 768px) {
+            .section-blob[data-blob="process"].expanded .blob-content {
+                flex-direction: column;
+                padding: 1.5rem;
+            }
+
+            .process-menu {
+                width: 100%;
+                min-width: auto;
+                padding-right: 0;
+                border-right: none;
+                border-bottom: 2px solid rgba(218, 165, 32, 0.3);
+                padding-bottom: 1rem;
+                margin-bottom: 1rem;
+                flex-direction: row;
+                overflow-x: auto;
+                gap: 0.5rem;
+            }
+
+            .process-menu-item {
+                padding: 0.75rem 1rem;
+                font-size: 0.85rem;
+                white-space: nowrap;
+                min-width: 120px;
+            }
+
+            .process-menu-item:hover {
+                transform: translateY(-2px);
+            }
+
+            .process-content-area {
+                padding-left: 0;
+            }
+
+            .process-detail h3 {
+                font-size: 1.5rem;
+            }
+
+            .process-detail p,
+            .process-detail ul {
+                font-size: 0.95rem;
+                line-height: 1.7;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .process-menu {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .process-menu-item {
+                min-width: auto;
+                text-align: center;
+            }
+
+            .process-detail h3 {
+                font-size: 1.3rem;
+            }
+
+            .process-detail p,
+            .process-detail ul {
+                font-size: 0.9rem;
+            }
+        }
+
         /* Portfolio horizontal line container - hide when expanded */
         .section-blob[data-blob="portfolio"].expanded .portfolio-semicircle-container {
             display: none;
@@ -2339,29 +2502,59 @@
             <div class="blob-title">Design Alchemy</div>
             <div class="blob-content">
                 <button class="blob-close" aria-label="Close">×</button>
-                <div class="blob-content-card">
-                    <h2 class="section-title text-center" style="margin-bottom: 2rem;">Design Alchemy</h2>
-                    <div class="process-list">
-                        <div class="process-step">
-                            <div class="step-number">1</div>
-                            <h3 class="text-lg font-bold text-chocolate mb-2" style="font-family: 'Playfair Display', Georgia, serif;">Discover</h3>
-                            <p class="text-chocolate-medium leading-relaxed" style="font-weight: 400; letter-spacing: -0.005em; line-height: 1.7; font-size: 1rem;">Understand user needs and business goals through research, interviews, and data analysis</p>
-                        </div>
-                        <div class="process-step">
-                            <div class="step-number">2</div>
-                            <h3 class="text-lg font-bold text-chocolate mb-2" style="font-family: 'Playfair Display', Georgia, serif;">Design</h3>
-                            <p class="text-chocolate-medium leading-relaxed" style="font-weight: 400; letter-spacing: -0.005em; line-height: 1.7; font-size: 1rem;">Create wireframes, prototypes, and user flows that solve identified problems</p>
-                        </div>
-                        <div class="process-step">
-                            <div class="step-number">3</div>
-                            <h3 class="text-lg font-bold text-chocolate mb-2" style="font-family: 'Playfair Display', Georgia, serif;">Develop</h3>
-                            <p class="text-chocolate-medium leading-relaxed" style="font-weight: 400; letter-spacing: -0.005em; line-height: 1.7; font-size: 1rem;">Build functional interfaces with clean, maintainable code and attention to detail</p>
-                        </div>
-                        <div class="process-step">
-                            <div class="step-number">4</div>
-                            <h3 class="text-lg font-bold text-chocolate mb-2" style="font-family: 'Playfair Display', Georgia, serif;">Deliver</h3>
-                            <p class="text-chocolate-medium leading-relaxed" style="font-weight: 400; letter-spacing: -0.005em; line-height: 1.7; font-size: 1rem;">Test, refine, and deploy solutions optimized for real-world use and performance</p>
-                        </div>
+
+                <!-- Process Menu Sidebar -->
+                <div class="process-menu">
+                    <div class="process-menu-item active" data-process="discover">Discover</div>
+                    <div class="process-menu-item" data-process="design">Design</div>
+                    <div class="process-menu-item" data-process="develop">Develop</div>
+                    <div class="process-menu-item" data-process="deliver">Deliver</div>
+                </div>
+
+                <!-- Process Content Area -->
+                <div class="process-content-area">
+                    <div class="process-detail active" id="process-discover">
+                        <h3>Discover</h3>
+                        <p>Understand user needs and business goals through research, interviews, and data analysis. I dive deep into understanding the problem space, gathering insights from stakeholders, and identifying opportunities for innovation.</p>
+                        <ul>
+                            <li>Conduct user research and stakeholder interviews</li>
+                            <li>Analyze existing workflows and pain points</li>
+                            <li>Define project scope and success metrics</li>
+                            <li>Create user personas and journey maps</li>
+                        </ul>
+                    </div>
+
+                    <div class="process-detail" id="process-design">
+                        <h3>Design</h3>
+                        <p>Create wireframes, prototypes, and user flows that solve identified problems. I transform insights into tangible design solutions that balance user needs with business objectives.</p>
+                        <ul>
+                            <li>Sketch low-fidelity wireframes and concepts</li>
+                            <li>Design high-fidelity mockups and prototypes</li>
+                            <li>Map user flows and interaction patterns</li>
+                            <li>Iterate based on feedback and usability testing</li>
+                        </ul>
+                    </div>
+
+                    <div class="process-detail" id="process-develop">
+                        <h3>Develop</h3>
+                        <p>Build functional interfaces with clean, maintainable code and attention to detail. I bring designs to life with responsive, accessible, and performant implementations.</p>
+                        <ul>
+                            <li>Develop responsive front-end interfaces</li>
+                            <li>Ensure accessibility and cross-browser compatibility</li>
+                            <li>Optimize for performance and loading speed</li>
+                            <li>Collaborate with developers on implementation</li>
+                        </ul>
+                    </div>
+
+                    <div class="process-detail" id="process-deliver">
+                        <h3>Deliver</h3>
+                        <p>Test, refine, and deploy solutions optimized for real-world use and performance. I ensure smooth handoffs and successful launches through thorough testing and documentation.</p>
+                        <ul>
+                            <li>Conduct comprehensive testing and QA</li>
+                            <li>Gather feedback and refine the solution</li>
+                            <li>Create documentation and style guides</li>
+                            <li>Monitor post-launch metrics and iterate</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -2747,6 +2940,33 @@
                     const selectedProject = document.getElementById(`project-${projectId}`);
                     if (selectedProject) {
                         selectedProject.classList.add('active');
+                    }
+                });
+            });
+        });
+
+        // Process menu navigation
+        document.addEventListener('DOMContentLoaded', () => {
+            const processMenuItems = document.querySelectorAll('.process-menu-item');
+            const processDetails = document.querySelectorAll('.process-detail');
+
+            processMenuItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const processId = item.getAttribute('data-process');
+
+                    // Remove active class from all menu items
+                    processMenuItems.forEach(mi => mi.classList.remove('active'));
+
+                    // Add active class to clicked item
+                    item.classList.add('active');
+
+                    // Hide all process details
+                    processDetails.forEach(pd => pd.classList.remove('active'));
+
+                    // Show selected process detail
+                    const selectedProcess = document.getElementById(`process-${processId}`);
+                    if (selectedProcess) {
+                        selectedProcess.classList.add('active');
                     }
                 });
             });
