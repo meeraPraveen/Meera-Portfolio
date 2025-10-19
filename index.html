@@ -1215,7 +1215,32 @@
         }
 
         .blob-close {
-            display: none !important;
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid rgba(218, 165, 32, 0.6);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1B0F0C;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .section-blob.expanded .blob-close {
+            display: flex;
+        }
+
+        .blob-close:hover {
+            background: rgba(253, 177, 161, 0.9);
+            transform: scale(1.1);
         }
 
         .section-blob:not(.expanded):hover {
@@ -2457,10 +2482,9 @@
         <!-- About Me Blob -->
         <div class="section-blob orbit-blob" data-blob="about" data-position="0">
             <div class="blob-title">About Me</div>
+            <button class="blob-close" aria-label="Close">×</button>
             <div class="blob-content">
-                <button class="blob-close" aria-label="Close">×</button>
                 <h2 class="section-title text-center" style="margin-bottom: 1rem;">About Me</h2>
-                <img src="Meera.jpeg" alt="Meera Madhavan" class="profile-image">
                 <h3 class="text-center text-chocolate" style="font-weight: 800; margin-bottom: 1.5rem; opacity: 1; color: #1B0F0C;">Sketches to Solutions</h3>
                 <p class="text-chocolate-medium leading-relaxed" style="font-weight: 700; letter-spacing: -0.005em; font-size: 1rem; max-width: 800px; text-align: center; color: #1B0F0C;">
                     I thrive on transforming complexity into clarity through design and analysis. By combining creativity with technical understanding, I translate business requirements into clear wireframes and streamlined workflows that evolve into intuitive interfaces and seamless user experiences. From mapping processes to sketching early concepts and delivering production-ready products, my focus remains on creating solutions people not only use but truly enjoy.
@@ -2476,8 +2500,8 @@
         <!-- Portfolio Blob -->
         <div class="section-blob orbit-blob" data-blob="portfolio" data-position="1">
             <div class="blob-title">Projects</div>
+            <button class="blob-close" aria-label="Close">×</button>
             <div class="blob-content">
-                <button class="blob-close" aria-label="Close">×</button>
 
                 <!-- Portfolio Menu Sidebar -->
                 <div class="portfolio-menu">
@@ -2540,7 +2564,7 @@
 
                     <div class="portfolio-detail" id="project-website">
                         <h3>Website Development</h3>
-                        <p style="color: #1B0F0C; font-weight: 600; line-height: 1.8; margin-bottom: 1rem;">Created a clean, accessible, and responsive web presence that effectively communicates the foundation's mission and initiatives.</p>
+                        <p style="color: #1B0F0C; font-weight: 600; line-height: 1.8; margin-bottom: 1rem;">Clean, accessible, and responsive web presence that effectively communicates the foundation's mission and initiatives.</p>
                         <p style="color: #1B0F0C; font-weight: 600;">Visit: <a href="https://inclusiveaifoundation.com/" target="_blank" rel="noopener noreferrer" style="color: #1B0F0C; text-decoration: underline; font-weight: 600;">inclusiveaifoundation.com</a></p>
                     </div>
 
@@ -2665,8 +2689,8 @@
         <!-- Process Blob -->
         <div class="section-blob orbit-blob" data-blob="process" data-position="2">
             <div class="blob-title">Design Alchemy</div>
+            <button class="blob-close" aria-label="Close">×</button>
             <div class="blob-content">
-                <button class="blob-close" aria-label="Close">×</button>
 
                 <!-- Process Menu Sidebar -->
                 <div class="process-menu">
@@ -2729,8 +2753,8 @@
         <!-- Testimonials Blob -->
         <div class="section-blob orbit-blob" data-blob="testimonials" data-position="3">
             <div class="blob-title">Testimonials</div>
+            <button class="blob-close" aria-label="Close">×</button>
             <div class="blob-content" style="scrollbar-width: none; -ms-overflow-style: none;">
-                <button class="blob-close" aria-label="Close">×</button>
                 <h2 class="section-title text-center" style="margin-bottom: 2rem;">Testimonials</h2>
 
                 <!-- Testimonial 1 -->
