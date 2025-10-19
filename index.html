@@ -2523,10 +2523,12 @@
                             <div class="carousel-arrow next" onclick="moveRPACarousel(1)">›</div>
 
                             <div class="carousel-images" id="rpa-carousel">
-                                <img src="RPA.PNG" alt="RPA Dashboard 1" class="carousel-image" onclick="openLightbox('RPA.PNG')">
+                                <img src="RPAo.png" alt="RPA Dashboard 0" class="carousel-image" onclick="openLightbox('RPAo.png')">
+                                <img src="RPA1.png" alt="RPA Dashboard 1" class="carousel-image" onclick="openLightbox('RPA1.png')">
+                                <img src="RPA.PNG" alt="RPA Dashboard 2" class="carousel-image" onclick="openLightbox('RPA.PNG')">
                                 <img src="RPA3.PNG" alt="RPA Dashboard 3" class="carousel-image" onclick="openLightbox('RPA3.PNG')">
-                                <img src="RPA2.PNG" alt="RPA Dashboard 2" class="carousel-image" onclick="openLightbox('RPA2.PNG')">
-                                <img src="RPA4.png" alt="RPA Dashboard 4" class="carousel-image" onclick="openLightbox('RPA4.png')">
+                                <img src="RPA2.PNG" alt="RPA Dashboard 4" class="carousel-image" onclick="openLightbox('RPA2.PNG')">
+                                <img src="RPA4.png" alt="RPA Dashboard 5" class="carousel-image" onclick="openLightbox('RPA4.png')">
                             </div>
 
                             <div class="carousel-controls">
@@ -2534,6 +2536,8 @@
                                 <div class="carousel-dot" onclick="goToRPASlide(1)"></div>
                                 <div class="carousel-dot" onclick="goToRPASlide(2)"></div>
                                 <div class="carousel-dot" onclick="goToRPASlide(3)"></div>
+                                <div class="carousel-dot" onclick="goToRPASlide(4)"></div>
+                                <div class="carousel-dot" onclick="goToRPASlide(5)"></div>
                             </div>
                         </div>
                     </div>
@@ -3167,7 +3171,7 @@
         function moveRPACarousel(direction) {
             const carousel = document.getElementById('rpa-carousel');
             const dots = document.querySelectorAll('#project-rpa .carousel-dot');
-            const totalSlides = 4;
+            const totalSlides = 6;
 
             rpaCurrentSlide += direction;
 
