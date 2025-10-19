@@ -1198,6 +1198,18 @@
             -ms-overflow-style: none;
         }
 
+        /* Profile image in About Me section */
+        .profile-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid rgba(218, 165, 32, 0.6);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2), 0 0 20px rgba(218, 165, 32, 0.3);
+            margin: 0 auto 2rem auto;
+            display: block;
+        }
+
         .section-blob.expanded::before {
             background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
         }
@@ -2470,6 +2482,7 @@
             <div class="blob-content">
                 <button class="blob-close" aria-label="Close">×</button>
                 <h2 class="section-title text-center" style="margin-bottom: 1rem;">About Me</h2>
+                <img src="Meera.jpeg" alt="Meera Madhavan" class="profile-image">
                 <h3 class="text-center text-chocolate" style="font-weight: 800; margin-bottom: 1.5rem; opacity: 1; color: #1B0F0C;">Sketches to Solutions</h3>
                 <p class="text-chocolate-medium leading-relaxed" style="font-weight: 700; letter-spacing: -0.005em; font-size: 1rem; max-width: 800px; text-align: center; color: #1B0F0C;">
                     I thrive on transforming complexity into clarity through design and analysis. By combining creativity with technical understanding, I translate business requirements into clear wireframes and streamlined workflows that evolve into intuitive interfaces and seamless user experiences. From mapping processes to sketching early concepts and delivering production-ready products, my focus remains on creating solutions people not only use but truly enjoy.
@@ -2490,8 +2503,8 @@
 
                 <!-- Portfolio Menu Sidebar -->
                 <div class="portfolio-menu">
-                    <div class="portfolio-menu-item active" data-project="dashboard">Dashboard Redesign</div>
-                    <div class="portfolio-menu-item" data-project="rpa">RPA Workflow</div>
+                    <div class="portfolio-menu-item active" data-project="rpa">RPA Workflow</div>
+                    <div class="portfolio-menu-item" data-project="dashboard">Dashboard Redesign</div>
                     <div class="portfolio-menu-item" data-project="healthcare">Healthcare Tools</div>
                     <div class="portfolio-menu-item" data-project="ux">UX Innovation</div>
                     <div class="portfolio-menu-item" data-project="website">Website Development</div>
@@ -2499,20 +2512,9 @@
 
                 <!-- Portfolio Content Area -->
                 <div class="portfolio-content-area">
-                    <div class="portfolio-detail active" id="project-dashboard">
-                        <h3>Dashboard Redesign</h3>
-                        <ul>
-                            <li>Redesigned and developed a responsive web dashboard to monitor application performance and escalations.</li>
-                            <li>Improved usability with intuitive data visualizations and color-coded alerts.</li>
-                            <li>Achieved an <strong>80% increase in issue tracking visibility</strong>.</li>
-                        </ul>
-                    </div>
-
-                    <div class="portfolio-detail" id="project-rpa">
+                    <div class="portfolio-detail active" id="project-rpa">
                         <h3>RPA Workflow Migration</h3>
-                        <ul>
-                            <li>Designed and developed dashboards that provided stakeholders with clear visibility into process runs and the status of daily operations.</li>
-                        </ul>
+                        <p style="color: #1B0F0C; font-weight: 600; line-height: 1.8; margin-bottom: 1.5rem;">Designed and developed dashboards that provided stakeholders with clear visibility into process runs and the status of daily operations.</p>
 
                         <!-- Image Carousel -->
                         <div class="project-image-carousel">
@@ -2521,8 +2523,8 @@
 
                             <div class="carousel-images" id="rpa-carousel">
                                 <img src="RPA.PNG" alt="RPA Dashboard 1" class="carousel-image" onclick="openLightbox('RPA.PNG')">
-                                <img src="RPA2.PNG" alt="RPA Dashboard 2" class="carousel-image" onclick="openLightbox('RPA2.PNG')">
                                 <img src="RPA3.PNG" alt="RPA Dashboard 3" class="carousel-image" onclick="openLightbox('RPA3.PNG')">
+                                <img src="RPA2.PNG" alt="RPA Dashboard 2" class="carousel-image" onclick="openLightbox('RPA2.PNG')">
                                 <img src="RPA4.png" alt="RPA Dashboard 4" class="carousel-image" onclick="openLightbox('RPA4.png')">
                             </div>
 
@@ -2533,6 +2535,15 @@
                                 <div class="carousel-dot" onclick="goToRPASlide(3)"></div>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="portfolio-detail" id="project-dashboard">
+                        <h3>Dashboard Redesign</h3>
+                        <ul>
+                            <li>Redesigned and developed a responsive web dashboard to monitor application performance and escalations.</li>
+                            <li>Improved usability with intuitive data visualizations and color-coded alerts.</li>
+                            <li>Achieved an <strong>80% increase in issue tracking visibility</strong>.</li>
+                        </ul>
                     </div>
 
                     <div class="portfolio-detail" id="project-healthcare">
