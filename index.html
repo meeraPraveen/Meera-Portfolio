@@ -1622,6 +1622,12 @@
             width: 100%;
             height: auto;
             object-fit: contain;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+
+        .carousel-image:hover {
+            opacity: 0.9;
         }
 
         .carousel-controls {
@@ -1680,6 +1686,58 @@
 
         .carousel-arrow.next {
             right: 10px;
+        }
+
+        /* Image lightbox/modal for enlarged view */
+        .image-lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .image-lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-image {
+            max-width: 95vw;
+            max-height: 95vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 0 50px rgba(218, 165, 32, 0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 3rem;
+            color: white;
+            background: rgba(218, 165, 32, 0.8);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            line-height: 1;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(253, 177, 161, 0.9);
+            transform: scale(1.1);
         }
 
         /* Responsive process layout */
@@ -2369,6 +2427,12 @@
     <!-- Backdrop for expanded blobs -->
     <div class="blob-backdrop" id="blobBackdrop"></div>
 
+    <!-- Image Lightbox for enlarged view -->
+    <div class="image-lightbox" id="imageLightbox" onclick="closeLightbox()">
+        <button class="lightbox-close" onclick="closeLightbox()">×</button>
+        <img src="" alt="Enlarged view" class="lightbox-image" id="lightboxImage" onclick="event.stopPropagation()">
+    </div>
+
     <!-- Dashboard Stats Section -->
     <div class="stats-dashboard">
         <h3>Professional Stats</h3>
@@ -2456,10 +2520,10 @@
                             <div class="carousel-arrow next" onclick="moveRPACarousel(1)">›</div>
 
                             <div class="carousel-images" id="rpa-carousel">
-                                <img src="RPA.PNG" alt="RPA Dashboard 1" class="carousel-image">
-                                <img src="RPA2.PNG" alt="RPA Dashboard 2" class="carousel-image">
-                                <img src="RPA3.PNG" alt="RPA Dashboard 3" class="carousel-image">
-                                <img src="RPA4.png" alt="RPA Dashboard 4" class="carousel-image">
+                                <img src="RPA.PNG" alt="RPA Dashboard 1" class="carousel-image" onclick="openLightbox('RPA.PNG')">
+                                <img src="RPA2.PNG" alt="RPA Dashboard 2" class="carousel-image" onclick="openLightbox('RPA2.PNG')">
+                                <img src="RPA3.PNG" alt="RPA Dashboard 3" class="carousel-image" onclick="openLightbox('RPA3.PNG')">
+                                <img src="RPA4.png" alt="RPA Dashboard 4" class="carousel-image" onclick="openLightbox('RPA4.png')">
                             </div>
 
                             <div class="carousel-controls">
@@ -3109,6 +3173,28 @@
                 dot.classList.toggle('active', index === rpaCurrentSlide);
             });
         }
+
+        // Image Lightbox functions
+        function openLightbox(imageSrc) {
+            const lightbox = document.getElementById('imageLightbox');
+            const lightboxImage = document.getElementById('lightboxImage');
+            lightboxImage.src = imageSrc;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('imageLightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+
+        // Close lightbox on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
 
         // Portfolio Blob Semicircle - Scroll visibility & expansion
         document.addEventListener('DOMContentLoaded', () => {
