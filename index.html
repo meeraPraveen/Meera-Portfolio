@@ -1652,25 +1652,22 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.8);
-            border: 2px solid rgba(218, 165, 32, 0.6);
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            background: transparent;
+            border: none;
             cursor: pointer;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #1B0F0C;
+            font-size: 2rem;
+            font-weight: 300;
+            color: rgba(0, 0, 0, 0.7);
+            text-shadow: 0 1px 3px rgba(255, 255, 255, 0.5);
             transition: all 0.3s ease;
             z-index: 10;
+            padding: 0.5rem;
         }
 
         .carousel-arrow:hover {
-            background: rgba(253, 177, 161, 0.9);
-            transform: translateY(-50%) scale(1.1);
+            color: rgba(0, 0, 0, 0.9);
+            transform: translateY(-50%) scale(1.15);
+            text-shadow: 0 1px 4px rgba(255, 255, 255, 0.7);
         }
 
         .carousel-arrow.prev {
@@ -2518,12 +2515,25 @@
                     </div>
 
                     <div class="portfolio-detail" id="project-dashboard">
-                        <h3>Dashboard Redesign</h3>
-                        <ul>
-                            <li>Redesigned and developed a responsive web dashboard to monitor application performance and escalations.</li>
-                            <li>Improved usability with intuitive data visualizations and color-coded alerts.</li>
-                            <li>Achieved an <strong>80% increase in issue tracking visibility</strong>.</li>
-                        </ul>
+                        <p style="color: #1B0F0C; font-weight: 600; line-height: 1.8; margin-bottom: 1.5rem;">Redesigned and developed a responsive web dashboard to monitor Change Management activities and escalations.</p>
+
+                        <!-- Image Carousel -->
+                        <div class="project-image-carousel">
+                            <div class="carousel-arrow prev" onclick="moveDashboardCarousel(-1)">‹</div>
+                            <div class="carousel-arrow next" onclick="moveDashboardCarousel(1)">›</div>
+
+                            <div class="carousel-images" id="dashboard-carousel">
+                                <img src="dash1.png" alt="Dashboard Screenshot 1" class="carousel-image" onclick="openLightbox('dash1.png')">
+                                <img src="dash2.png" alt="Dashboard Screenshot 2" class="carousel-image" onclick="openLightbox('dash2.png')">
+                                <img src="dash3.png" alt="Dashboard Screenshot 3" class="carousel-image" onclick="openLightbox('dash3.png')">
+                            </div>
+
+                            <div class="carousel-controls">
+                                <div class="carousel-dot active" onclick="goToDashboardSlide(0)"></div>
+                                <div class="carousel-dot" onclick="goToDashboardSlide(1)"></div>
+                                <div class="carousel-dot" onclick="goToDashboardSlide(2)"></div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="portfolio-detail" id="project-healthcare">
@@ -3162,6 +3172,43 @@
             // Update dots
             dots.forEach((dot, index) => {
                 dot.classList.toggle('active', index === rpaCurrentSlide);
+            });
+        }
+
+        // Dashboard Image Carousel
+        let dashboardCurrentSlide = 0;
+
+        function moveDashboardCarousel(direction) {
+            const carousel = document.getElementById('dashboard-carousel');
+            const dots = document.querySelectorAll('#project-dashboard .carousel-dot');
+            const totalSlides = 3;
+
+            dashboardCurrentSlide += direction;
+
+            if (dashboardCurrentSlide < 0) {
+                dashboardCurrentSlide = totalSlides - 1;
+            } else if (dashboardCurrentSlide >= totalSlides) {
+                dashboardCurrentSlide = 0;
+            }
+
+            carousel.style.transform = `translateX(-${dashboardCurrentSlide * 100}%)`;
+
+            // Update dots
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === dashboardCurrentSlide);
+            });
+        }
+
+        function goToDashboardSlide(slideIndex) {
+            const carousel = document.getElementById('dashboard-carousel');
+            const dots = document.querySelectorAll('#project-dashboard .carousel-dot');
+
+            dashboardCurrentSlide = slideIndex;
+            carousel.style.transform = `translateX(-${dashboardCurrentSlide * 100}%)`;
+
+            // Update dots
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === dashboardCurrentSlide);
             });
         }
 
